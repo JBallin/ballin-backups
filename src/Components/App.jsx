@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../css/App.css';
+import Category from './Category'
+
 const API = process.env.REACT_APP_API;
 const gistAPI = 'https://api.github.com/gists'
 
@@ -24,6 +26,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="App-title">My Sweet Config</h1>
+        {this.state.categories.map(c => <Category title={c.title} key={c.id} />)}
       </div>
     );
   }
