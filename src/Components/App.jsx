@@ -10,15 +10,19 @@ class App extends Component {
   state = {files: [], categories: []};
 
   componentDidMount = async () => {
-    const usersRes = await fetch(API + '/users');
-    const users = await usersRes.json();
-    const gist_id = users[0].gist_id;
-    const gistRes = await fetch(gistAPI + '/' + gist_id)
-    const gist = await gistRes.json();
-    const { files } = gist;
+    const usersFetch = await fetch(API + '/users');
+    const users = await usersFetch.json();
+    const { gist_id } = users[0];
 
-    const categoriesRes = await fetch(API + '/categories');
-    const categories = await categoriesRes.json();
+    let files = [];
+    if (gist_id) {
+      const gistFetch = await fetch(gistAPI + '/' + gist_id)
+      const gist = await gistFetch.json();
+      files = Object.keys(gist.files);
+    }
+
+    const categoriesFetch = await fetch(API + '/categories');
+    const categories = await categoriesFetch.json();
 
     this.setState({files, categories});
   }
