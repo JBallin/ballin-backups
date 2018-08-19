@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/App.css';
+import fetch from 'isomorphic-fetch';
 import Category from './Category'
 
 const API = process.env.REACT_APP_API;
