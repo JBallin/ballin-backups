@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Gist from 'react-gist';
 import '../css/File.css';
 
-File = ({gistID, title, extension}) => {
+const GistFile = ({gistID, title, extension}) => {
   const fileName = title + extension;
   return (
     <div>
@@ -14,4 +14,4 @@ File = ({gistID, title, extension}) => {
   )
 }
 
-export default File;
+export default GistFile;

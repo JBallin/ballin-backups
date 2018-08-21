@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../css/Category.css';
-import File from './File';
+import GistFile from './GistFile';
 
 class Category extends Component {
   state = {display: false};
@@ -19,7 +19,7 @@ class Category extends Component {
           <h3>{title}</h3>
         </button>
         {this.state.display && files.map(({title, extension}, i) => (
-          <File title={title} extension={extension} gistID={gistID} key={i} />
+          <GistFile title={title} extension={extension} gistID={gistID} key={i} />
         ))}
       </div>
     )
