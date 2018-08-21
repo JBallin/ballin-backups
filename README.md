@@ -9,4 +9,4 @@ Q3 React Project at Galvanize's Web Development Immersive.
 * Express.js ([API](https://github.com/JBallin/sweet-api))
 * Knex.js
 * PostgreSQL
-* Bootstrap
+* GitHub API
