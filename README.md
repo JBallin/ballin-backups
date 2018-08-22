@@ -11,6 +11,10 @@ Q3 React Project at Galvanize's Web Development Immersive.
 * PostgreSQL
 * GitHub API
 
+### Screenshot
+
+![Screenshot](public/images/expanded_category.png 'Screenshot')
+
 ### Local Installation
 ```shell
 $ git clone https://github.com/JBallin/sweet-config.git
