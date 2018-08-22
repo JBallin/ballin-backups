@@ -15,6 +15,13 @@ Q3 React Project at Galvanize's Web Development Immersive.
 
 ![Screenshot](public/images/expanded_category.png 'Screenshot')
 
+### How to Generate a Gist with Your (Sweet) Config
+Install [ballin-scripts](https://github.com/JBallin/ballin-scripts), and run:
+```shell
+$ gu # generate gist
+$ ballin_config get gu.id # output your gist ID
+```
+
 ### Local Installation
 ```shell
 $ git clone https://github.com/JBallin/sweet-config.git
