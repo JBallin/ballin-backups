@@ -1,9 +1,21 @@
 import React, {Component} from 'react';
 import '../css/Category.css';
+import PropTypes from 'prop-types';
 import GistFile from './GistFile';
 
 class Category extends Component {
-  state = {display: false};
+  static propTypes = {
+    category: PropTypes.string.isRequired,
+    gistID: PropTypes.string.isRequired,
+    files: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired,
+    })).isRequired,
+  }
+
+  state = {
+    display: false,
+  };
 
   toggleDisplay = () => {
     this.setState(prev => ({display: !prev.display}))
