@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import Category from './Category'
+import Category from './Category';
 
 const API = process.env.REACT_APP_API;
 
 class App extends Component {
-  state = {files: [], gistID: ''};
+  state = {
+    files: [],
+    gistID: '',
+  };
 
   componentDidMount = async () => {
     const files = await fetch(`${API}/files`).then(r => r.json());
@@ -15,12 +18,27 @@ class App extends Component {
   }
 
   render() {
+    const { files, gistID } = this.state;
+    const header = (
+      <h1 className="App-title">
+        My Sweet Config
+      </h1>
+    );
+    const fileCategories = files.map(({
+      category, id, files: filesArr,
+    }) => (
+      <Category
+        category={category}
+        files={filesArr}
+        key={id}
+        gistID={gistID}
+      />
+    ));
+
     return (
       <div className="App">
-        <h1 className="App-title">My Sweet Config</h1>
-        {this.state.files.map((category, i) => (
-          <Category category={category} gistID={this.state.gistID} key={i} />)
-        )}
+        { header }
+        { fileCategories }
       </div>
     );
   }

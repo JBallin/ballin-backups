@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import '../css/Category.css';
 import PropTypes from 'prop-types';
 import GistFile from './GistFile';
@@ -18,24 +18,40 @@ class Category extends Component {
   };
 
   toggleDisplay = () => {
-    this.setState(prev => ({display: !prev.display}))
+    this.setState(prev => ({ display: !prev.display }));
   }
 
   render() {
-    const { category, gistID } = this.props;
-    const title = Object.keys(category)[0];
-    const files = Object.values(category)[0];
+    const {
+      category, gistID, files,
+    } = this.props;
+    const { display } = this.state;
+    const categoryButton = (
+      <button
+        type="button"
+        className="category"
+        onClick={this.toggleDisplay}
+      >
+        <h3>{ category }</h3>
+      </button>
+    );
+    const embeds = (
+      files.map(({ title, extension }) => (
+        <GistFile
+          title={title}
+          extension={extension}
+          gistID={gistID}
+          key={title + extension}
+        />
+      ))
+    );
     return (
       <div>
-        <button className={'category'} onClick={this.toggleDisplay}>
-          <h3>{title}</h3>
-        </button>
-        {this.state.display && files.map(({title, extension}, i) => (
-          <GistFile title={title} extension={extension} gistID={gistID} key={i} />
-        ))}
+        { categoryButton }
+        { display && embeds }
       </div>
-    )
-  };
+    );
+  }
 }
 
 export default Category;
