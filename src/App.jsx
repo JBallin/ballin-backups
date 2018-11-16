@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Container } from 'reactstrap';
 import Categories from './components/Categories';
 import Login from './components/Login';
+import TopNav from './components/TopNav';
 
 class App extends Component {
   state = {
@@ -16,14 +18,14 @@ class App extends Component {
     const { isLoggedIn } = this.state;
     return (
       <div>
-        <h1 className="text-center">My Sweet Config</h1>
-        <div className="container mt-4">
+        <TopNav title="My Sweet Config" />
+        <Container>
           {
             !isLoggedIn
               ? <Login attemptLogin={this.attemptLogin} />
               : <Categories />
           }
-        </div>
+        </Container>
       </div>
     );
   }
