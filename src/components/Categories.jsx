@@ -5,7 +5,7 @@ import Category from './Category';
 
 const API = process.env.REACT_APP_API;
 
-class App extends Component {
+class Categories extends Component {
   state = {
     files: [],
     gistID: '',
@@ -35,11 +35,6 @@ class App extends Component {
     const {
       files, gistID, isLoading, error,
     } = this.state;
-    const header = (
-      <h1 className="text-center">
-        My Sweet Config
-      </h1>
-    );
     const fileCategories = files.map(({
       category, id, files: filesArr,
     }) => (
@@ -51,21 +46,14 @@ class App extends Component {
       />
     ));
     const errorMessage = <h3>{ `Error: ${error}` }</h3>;
-    const displayApp = () => {
+    const displayCategories = () => {
       if (error) return errorMessage;
       if (isLoading) return <Spinner />;
       return fileCategories;
     };
 
-    return (
-      <div className="App">
-        { header }
-        <div className="container mt-4">
-          { displayApp() }
-        </div>
-      </div>
-    );
+    return displayCategories();
   }
 }
 
-export default App;
+export default Categories;
