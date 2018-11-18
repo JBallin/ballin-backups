@@ -16,7 +16,7 @@ import { bindActionCreators } from 'redux';
 import { userSignup } from '../actions/auth.actions';
 
 const validateGistAPI = `${process.env.REACT_APP_API}/validateGist`;
-const fields = ['gistId', 'name', 'email', 'password', 'verifyPassword'];
+const fields = ['gistId', 'name', 'email', 'username', 'password', 'verifyPassword'];
 
 class Signup extends Component {
   state = {
@@ -24,6 +24,7 @@ class Signup extends Component {
     gistId: '',
     name: '',
     email: '',
+    username: '',
     password: '',
     verifyPassword: '',
     errorMessage: '',
@@ -81,10 +82,10 @@ class Signup extends Component {
     const { userSignupAction } = this.props;
     if (isValid) {
       const {
-        name, email, password, gistId,
+        gistId, name, email, username, password,
       } = this.state;
       userSignupAction({
-        name, email, password, gistId,
+        gist_id: gistId, name, email, username, password,
       });
     }
   }
@@ -92,7 +93,7 @@ class Signup extends Component {
   render() {
     document.title = 'Signup | My Sweet Config';
     const {
-      gistId, name, email, password, verifyPassword, errorMessage, missing, isValidGist,
+      gistId, name, email, username, password, verifyPassword, errorMessage, missing, isValidGist,
     } = this.state;
     const redBoxShadow = { boxShadow: '0 0 5px red' };
     const getGistBoxShadow = () => {
@@ -153,6 +154,21 @@ class Signup extends Component {
         />
       </FormGroup>
     );
+    const usernameField = (
+      <FormGroup>
+        <Label for="username-field">
+          Username
+        </Label>
+        <Input
+          style={missing.includes('userName') ? { boxShadow: '0 0 5px red' } : {}}
+          type="text"
+          name="username"
+          id="username-field"
+          value={username}
+          onChange={this.handleChange}
+        />
+      </FormGroup>
+    );
     const passwordField = (
       <FormGroup>
         <Label for="password">
@@ -191,6 +207,7 @@ class Signup extends Component {
         { gistIdField }
         { nameField }
         { emailField }
+        { usernameField }
         { passwordField }
         { verifyPasswordField }
         <Button color="primary" type="submit">Sign Up</Button>
