@@ -53,15 +53,13 @@ class TopNav extends React.Component {
     );
 
     return (
-      <div>
-        <Navbar color="primary" dark expand="md">
-          <NavbarBrand href="/">{title}</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            { user.username ? logoutLink : loginAndSignupLinks }
-          </Collapse>
-        </Navbar>
-      </div>
+      <Navbar color="primary" dark expand="md" className="mb-5">
+        <NavbarBrand href="/">{title}</NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          { user.email ? logoutLink : loginAndSignupLinks }
+        </Collapse>
+      </Navbar>
     );
   }
 }
