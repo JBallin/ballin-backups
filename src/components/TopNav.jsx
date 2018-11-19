@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -36,7 +36,7 @@ class TopNav extends React.Component {
     const loginAndSignupLinks = (
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <NavLink to="/login" className="nav-link" exact>Login</NavLink>
+          <NavLink to="/login" className="nav-link">Login</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to="/signup" className="nav-link">Signup</NavLink>
@@ -69,4 +69,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(TopNav);
+export default withRouter(connect(mapStateToProps)(TopNav));
