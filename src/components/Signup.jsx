@@ -74,10 +74,10 @@ class Signup extends Component {
 
   userSignup = async (e) => {
     e.preventDefault();
-    this.validateForm();
-    const { isValid } = this.state;
+    await this.validateForm();
+    const { errorMessage } = this.state;
     const { userSignupAction } = this.props;
-    if (isValid) {
+    if (!errorMessage) {
       const {
         gistId, name, email, username, password,
       } = this.state;
@@ -92,18 +92,24 @@ class Signup extends Component {
     const {
       gistId, name, email, username, password, verifyPassword, errorMessage, missing, isValidGist,
     } = this.state;
-    const redBoxShadow = { boxShadow: '0 0 5px red' };
-    const getGistBoxShadow = () => {
-      if (missing.includes('gistId') || isValidGist === false) {
-        return redBoxShadow;
-      }
-      return {};
-    };
     const colStyle = ({
       border: '1px solid #c9c5c2',
       padding: 35,
       boxShadow: '3px 3px 47px 0px rgba(0,0,0,0.5)',
     });
+    const isFieldInvalid = field => errorMessage !== '' && missing.includes(field);
+    const isGistInvalid = () => {
+      if (errorMessage) {
+        return missing.includes('gistId') || isValidGist === false;
+      }
+      return false;
+    };
+    const isPassInvalid = (field) => {
+      if (errorMessage) {
+        return missing.includes(field) || verifyPassword !== password;
+      }
+      return false;
+    };
     const gistIdField = (
       <FormGroup>
         <Label for="gistId-field">
@@ -111,8 +117,8 @@ class Signup extends Component {
           <Link to="/signup/help" className="ml-1">(Help)</Link>
         </Label>
         <Input
+          invalid={isGistInvalid()}
           autoFocus
-          style={getGistBoxShadow()}
           type="text"
           name="gistId"
           id="gistId-field"
@@ -127,7 +133,7 @@ class Signup extends Component {
           Name
         </Label>
         <Input
-          style={missing.includes('name') ? { boxShadow: '0 0 5px red' } : {}}
+          invalid={isFieldInvalid('name')}
           type="text"
           name="name"
           id="name-field"
@@ -142,7 +148,7 @@ class Signup extends Component {
           Email
         </Label>
         <Input
-          style={missing.includes('email') ? { boxShadow: '0 0 5px red' } : {}}
+          invalid={isFieldInvalid('email')}
           type="email"
           name="email"
           id="email-field"
@@ -157,7 +163,7 @@ class Signup extends Component {
           Username
         </Label>
         <Input
-          style={missing.includes('userName') ? { boxShadow: '0 0 5px red' } : {}}
+          invalid={isFieldInvalid('username')}
           type="text"
           name="username"
           id="username-field"
@@ -172,7 +178,7 @@ class Signup extends Component {
           Password
         </Label>
         <Input
-          style={missing.includes('password') ? { boxShadow: '0 0 5px red' } : {}}
+          invalid={isPassInvalid('password')}
           type="password"
           name="password"
           id="password-field"
@@ -187,7 +193,7 @@ class Signup extends Component {
           Verify Password
         </Label>
         <Input
-          style={missing.includes('verifyPassword') ? { boxShadow: '0 0 5px red' } : {}}
+          invalid={isPassInvalid('verifyPassword')}
           type="password"
           name="verifyPassword"
           id="verifyPassword-field"
