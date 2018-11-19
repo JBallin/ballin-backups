@@ -31,15 +31,12 @@ class Signup extends Component {
     missing: [],
   }
 
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleGistChange = (e) => {
-    this.setState({
-      gistId: e.target.value,
-      isValidGist: null,
-    });
+  handleChange = async (e) => {
+    const newState = { [e.target.name]: e.target.value };
+    if (e.target.name === 'gistId') newState.isValidGist = null;
+    await this.setState(newState);
+    const { errorMessage } = this.state;
+    if (errorMessage) await this.validateForm();
   }
 
   validateForm = async () => {
@@ -120,7 +117,7 @@ class Signup extends Component {
           name="gistId"
           id="gistId-field"
           value={gistId}
-          onChange={this.handleGistChange}
+          onChange={this.handleChange}
         />
       </FormGroup>
     );
