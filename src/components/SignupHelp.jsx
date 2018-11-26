@@ -10,6 +10,12 @@ const SignupHelp = () => {
       Ballin Scripts
     </a>
   );
+
+  const githubGistHelpLink = (
+    <a href="https://help.github.com/articles/about-gists/" rel="noreferrer noopener" target="_blank">
+      gist
+    </a>
+  );
   /* eslint-disable react/jsx-one-expression-per-line */
   const howGenGist = (
     <div className="lead">
@@ -21,7 +27,7 @@ const SignupHelp = () => {
         </li>
         <br />
         <li>
-          Generate a backup of your dev environment into a gist:
+          Generate a backup of your dev environment in a { githubGistHelpLink }:
           <br />
           <code>$ gu</code>
         </li>
