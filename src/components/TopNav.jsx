@@ -14,9 +14,6 @@ import {
 class TopNav extends React.Component {
   static propTypes = {
     user: PropTypes.shape({
-      gistId: PropTypes.string,
-      name: PropTypes.string,
-      email: PropTypes.string,
       username: PropTypes.string,
     }),
     title: PropTypes.string.isRequired,
@@ -64,7 +61,7 @@ class TopNav extends React.Component {
         <NavbarBrand href="/">{title}</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={isOpen} navbar>
-          { user.email ? logoutLink : loginAndSignupLinks }
+          { user.username ? logoutLink : loginAndSignupLinks }
         </Collapse>
       </Navbar>
     );
