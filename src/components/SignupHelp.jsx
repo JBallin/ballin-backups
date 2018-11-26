@@ -7,7 +7,7 @@ const SignupHelp = () => {
 
   const ballinScriptsLink = (
     <a href="https://github.com/JBallin/ballin-scripts" rel="noreferrer noopener" target="_blank">
-      Ballin Scripts
+      ballin scripts
     </a>
   );
 
@@ -33,7 +33,7 @@ const SignupHelp = () => {
         </li>
         <br />
         <li>
-          Output your new Gist ID:
+          Output your new gist id:
           <br />
           <code>$ ballin_config get gu.id</code>
         </li>
