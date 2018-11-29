@@ -31,6 +31,7 @@ class Login extends React.Component {
   }
 
   render() {
+    document.title = 'Login | My Sweet Config';
     const { email, password } = this.state;
     const EmailField = () => (
       <FormGroup>
