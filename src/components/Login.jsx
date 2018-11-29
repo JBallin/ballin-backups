@@ -69,6 +69,21 @@ class Login extends React.Component {
         <Link to="/signup">Not a member?</Link>
       </Form>
     );
+    const colStyle = ({
+      border: '1px solid #c9c5c2',
+      padding: 35,
+      boxShadow: '3px 3px 47px 0px rgba(0,0,0,.5)',
+    });
+
+    return (
+      <Container className="main-wrapper">
+        <Row style={{ marginTop: '15vh' }}>
+          <Col lg={{ size: 6, offset: 3 }} style={colStyle}>
+            <LoginForm />
+          </Col>
+        </Row>
+      </Container>
+    );
   }
 }
 
