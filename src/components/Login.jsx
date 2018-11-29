@@ -31,31 +31,37 @@ class Login extends React.Component {
   }
 
   render() {
-
-    return (
     const { email, password } = this.state;
+    const EmailField = () => (
+      <FormGroup>
+        <Label for="email-field">Email</Label>
+        <Input
+          autoFocus
+          type="email"
+          name="email"
+          id="email-field"
+          value={email}
+          onChange={this.handleChange}
+        />
+      </FormGroup>
+    );
+    const PasswordField = () => (
+      <FormGroup>
+        <Label for="password-field">Password</Label>
+        <Input
+          type="password"
+          name="password"
+          id="password-field"
+          value={password}
+          onChange={this.handleChange}
+        />
+      </FormGroup>
+    );
+    const LoginForm = () => (
       <Form onSubmit={this.handleSubmit}>
-        <FormGroup>
-          <Label for="user">Username</Label>
-          <Input
-            type="text"
-            name="username"
-            id="user"
-            value={username}
-            onChange={this.handleChange}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="pass">Password</Label>
-          <Input
-            type="password"
-            name="password"
-            id="pass"
-            value={password}
-            onChange={this.handleChange}
-          />
-        </FormGroup>
         <Button>Login</Button>
+        <EmailField />
+        <PasswordField />
       </Form>
     );
   }
