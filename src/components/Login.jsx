@@ -34,8 +34,8 @@ class Login extends React.Component {
     document.title = 'Login | My Sweet Config';
     const { email, password } = this.state;
     const { showLoginError, errorMessage, isLoading } = this.props;
-    const LoginError = () => <Alert color="primary">{ errorMessage }</Alert>;
-    const EmailField = () => (
+    const loginError = <Alert color="primary">{ errorMessage }</Alert>;
+    const emailField = (
       <FormGroup>
         <Label for="email-field">Email</Label>
         <Input
@@ -48,7 +48,7 @@ class Login extends React.Component {
         />
       </FormGroup>
     );
-    const PasswordField = () => (
+    const passwordField = (
       <FormGroup>
         <Label for="password-field">Password</Label>
         <Input
@@ -60,11 +60,11 @@ class Login extends React.Component {
         />
       </FormGroup>
     );
-    const LoginForm = () => (
+    const loginForm = (
       <Form onSubmit={this.handleSubmit}>
-        <EmailField />
-        <PasswordField />
-        { showLoginError && <LoginError /> }
+        { emailField }
+        { passwordField }
+        { showLoginError && loginError }
         <Button color="primary" className="mr-3" disabled={isLoading}>Login</Button>
         <Link to="/signup">Not a member?</Link>
       </Form>
@@ -79,7 +79,7 @@ class Login extends React.Component {
       <Container className="main-wrapper">
         <Row style={{ marginTop: '15vh' }}>
           <Col lg={{ size: 6, offset: 3 }} style={colStyle}>
-            <LoginForm />
+            { loginForm }
           </Col>
         </Row>
       </Container>
