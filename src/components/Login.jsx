@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import {
   Button, Form, FormGroup, Label, Input,
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { userLogin } from '../actions/auth.actions';
 
 class Login extends React.Component {
   static propTypes = {
-    attemptLogin: PropTypes.func.isRequired,
+    showLoginError: PropTypes.bool.isRequired,
+    errorMessage: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool.isRequired,
   }
 
   state = {
@@ -56,4 +61,15 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  showLoginError: state.auth.showLoginError,
+  user: state.auth.user,
+  errorMessage: state.auth.errorMessage,
+  isLoading: state.auth.isLoading,
+});
+
+const mapDispatchToProps = dispatch => ({
+  userLoginAction: bindActionCreators(userLogin, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
