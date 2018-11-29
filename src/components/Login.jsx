@@ -10,7 +10,7 @@ class Login extends React.Component {
   }
 
   state = {
-    username: '',
+    email: '',
     password: '',
   }
 
@@ -26,9 +26,9 @@ class Login extends React.Component {
   }
 
   render() {
-    const { username, password } = this.state;
 
     return (
+    const { email, password } = this.state;
       <Form onSubmit={this.handleSubmit}>
         <FormGroup>
           <Label for="user">Username</Label>
