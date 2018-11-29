@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Button, Form, FormGroup, Label, Container, Row, Col, Alert, Input,
 } from 'reactstrap';
@@ -65,6 +66,7 @@ class Login extends React.Component {
         <PasswordField />
         { showLoginError && <LoginError /> }
         <Button color="primary" className="mr-3" disabled={isLoading}>Login</Button>
+        <Link to="/signup">Not a member?</Link>
       </Form>
     );
   }
