@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Form, FormGroup, Label, Input,
+  Button, Form, FormGroup, Label, Container, Row, Col, Alert, Input,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -23,16 +23,17 @@ class Login extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    const { username, password } = this.state;
-    const { attemptLogin } = this.props;
-    attemptLogin(username, password);
+    const { userLoginAction } = this.props;
+    await userLoginAction(this.state);
   }
 
   render() {
     document.title = 'Login | My Sweet Config';
     const { email, password } = this.state;
+    const { showLoginError, errorMessage, isLoading } = this.props;
+    const LoginError = () => <Alert color="primary">{ errorMessage }</Alert>;
     const EmailField = () => (
       <FormGroup>
         <Label for="email-field">Email</Label>
@@ -60,9 +61,10 @@ class Login extends React.Component {
     );
     const LoginForm = () => (
       <Form onSubmit={this.handleSubmit}>
-        <Button>Login</Button>
         <EmailField />
         <PasswordField />
+        { showLoginError && <LoginError /> }
+        <Button color="primary" className="mr-3" disabled={isLoading}>Login</Button>
       </Form>
     );
   }
