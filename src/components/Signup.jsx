@@ -16,13 +16,12 @@ import { bindActionCreators } from 'redux';
 import { userSignup } from '../actions/auth.actions';
 
 const validateGistAPI = `${process.env.REACT_APP_API}/validateGist`;
-const fields = ['gistId', 'name', 'email', 'username', 'password', 'verifyPassword'];
+const fields = ['gistId', 'email', 'username', 'password', 'verifyPassword'];
 
 class Signup extends Component {
   state = {
     isValidGist: null,
     gistId: '',
-    name: '',
     email: '',
     username: '',
     password: '',
@@ -90,7 +89,7 @@ class Signup extends Component {
   render() {
     document.title = 'Signup | My Sweet Config';
     const {
-      gistId, name, email, username, password, verifyPassword, errorMessage, missing, isValidGist,
+      gistId, email, username, password, verifyPassword, errorMessage, missing, isValidGist,
     } = this.state;
     const colStyle = ({
       border: '1px solid #c9c5c2',
@@ -127,17 +126,17 @@ class Signup extends Component {
         />
       </FormGroup>
     );
-    const nameField = (
+    const usernameField = (
       <FormGroup>
-        <Label for="name-field">
-          Name
+        <Label for="username-field">
+          Username
         </Label>
         <Input
-          invalid={isFieldInvalid('name')}
+          invalid={isFieldInvalid('username')}
           type="text"
-          name="name"
-          id="name-field"
-          value={name}
+          name="username"
+          id="username-field"
+          value={username}
           onChange={this.handleChange}
         />
       </FormGroup>
@@ -153,21 +152,6 @@ class Signup extends Component {
           name="email"
           id="email-field"
           value={email}
-          onChange={this.handleChange}
-        />
-      </FormGroup>
-    );
-    const usernameField = (
-      <FormGroup>
-        <Label for="username-field">
-          Username
-        </Label>
-        <Input
-          invalid={isFieldInvalid('username')}
-          type="text"
-          name="username"
-          id="username-field"
-          value={username}
           onChange={this.handleChange}
         />
       </FormGroup>
@@ -208,9 +192,8 @@ class Signup extends Component {
     const form = (
       <Form onSubmit={this.userSignup}>
         { gistIdField }
-        { nameField }
-        { emailField }
         { usernameField }
+        { emailField }
         { passwordField }
         { verifyPasswordField }
         <Button color="primary" type="submit">Sign Up</Button>
