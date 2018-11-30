@@ -45,6 +45,7 @@ class Login extends React.Component {
           id="email-field"
           value={email}
           onChange={this.handleChange}
+          autoComplete="email username"
         />
       </FormGroup>
     );
@@ -57,6 +58,7 @@ class Login extends React.Component {
           id="password-field"
           value={password}
           onChange={this.handleChange}
+          autoComplete="current-password"
         />
       </FormGroup>
     );
