@@ -138,6 +138,7 @@ class Signup extends Component {
           id="username-field"
           value={username}
           onChange={this.handleChange}
+          autoComplete="username"
         />
       </FormGroup>
     );
@@ -153,6 +154,7 @@ class Signup extends Component {
           id="email-field"
           value={email}
           onChange={this.handleChange}
+          autoComplete="email username"
         />
       </FormGroup>
     );
@@ -168,6 +170,7 @@ class Signup extends Component {
           id="password-field"
           value={password}
           onChange={this.handleChange}
+          autoComplete="new-password"
         />
       </FormGroup>
     );
@@ -183,6 +186,7 @@ class Signup extends Component {
           id="verifyPassword-field"
           value={verifyPassword}
           onChange={this.handleChange}
+          autoComplete="new-password"
         />
         {errorMessage ? (
           <Alert color="danger" className="mt-3">{errorMessage}</Alert>
