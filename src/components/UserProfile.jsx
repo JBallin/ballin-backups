@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
-import Spinner from './Spinner';
+import PageSpinner from './PageSpinner';
 import Category from './Category';
 
 const API = process.env.REACT_APP_API;
@@ -48,7 +48,7 @@ class Categories extends Component {
     const errorMessage = <h3>{ `Error: ${error}` }</h3>;
     const displayCategories = () => {
       if (error) return errorMessage;
-      if (isLoading) return <Spinner />;
+      if (isLoading) return <PageSpinner />;
       return fileCategories;
     };
 
