@@ -91,6 +91,9 @@ class Signup extends Component {
           invalid={
             !!errorMessage && (!gistId || invalidGist)
           }
+          valid={
+            !!errorMessage && !!gistId && !invalidGist
+          }
           autoFocus
           type="text"
           name="gistId"
@@ -108,6 +111,9 @@ class Signup extends Component {
         <Input
           invalid={
             !!errorMessage && !username
+          }
+          valid={
+            !!errorMessage && !!username
           }
           type="text"
           name="username"
@@ -128,6 +134,9 @@ class Signup extends Component {
           invalid={
             !!errorMessage && (!email || invalidEmail)
           }
+          valid={
+            !!errorMessage && (!!email && !invalidEmail)
+          }
           name="email"
           id="email-field"
           value={email}
@@ -144,6 +153,9 @@ class Signup extends Component {
         <Input
           invalid={
             !!errorMessage && !password
+          }
+          valid={
+            !!errorMessage && !!password
           }
           type="password"
           name="password"
@@ -162,6 +174,9 @@ class Signup extends Component {
         <Input
           invalid={
             !!errorMessage && (!verifyPassword || password !== verifyPassword)
+          }
+          valid={
+            !!errorMessage && (!!verifyPassword && password === verifyPassword)
           }
           type="password"
           name="verifyPassword"
