@@ -55,18 +55,16 @@ class Signup extends Component {
     return formatted;
   }
 
-  userSignup = async (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    await this.validateForm();
-    const { errorMessage } = this.state;
-    const { userSignupAction } = this.props;
+    const {
+      validateSignup, userSignup,
+    } = this.props;
+    await validateSignup(this.state);
+    const { errorMessage } = this.props;
     if (!errorMessage) {
-      const {
-        gistId, name, email, username, password,
-      } = this.state;
-      userSignupAction({
-        gist_id: gistId, name, email, username, password,
-      });
+      const newUser = this.formatUser(this.state);
+      await userSignup(newUser);
     }
   }
 
@@ -178,7 +176,7 @@ class Signup extends Component {
       </FormGroup>
     );
     const form = (
-      <Form onSubmit={this.userSignup}>
+      <Form onSubmit={this.handleSubmit}>
         { gistIdField }
         { usernameField }
         { emailField }
