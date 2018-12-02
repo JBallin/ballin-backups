@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import FormSpinner from './FormSpinner';
 import * as actions from '../actions/signup.actions';
 
 class Signup extends Component {
@@ -200,6 +201,7 @@ class Signup extends Component {
         { verifyPasswordField }
         <Button color="primary" type="submit">Sign Up</Button>
         { showSignupError && errorAlert }
+        { isLoading && <FormSpinner /> }
       </Form>
     );
 
