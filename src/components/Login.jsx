@@ -6,13 +6,14 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { userLogin } from '../actions/auth.actions';
+import * as actions from '../actions/auth.actions';
 
 class Login extends React.Component {
   static propTypes = {
     showLoginError: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired,
+    userLogin: PropTypes.func.isRequired,
   }
 
   state = {
@@ -24,10 +25,10 @@ class Login extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleSubmit = async (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const { userLoginAction } = this.props;
-    await userLoginAction(this.state);
+    const { userLogin } = this.props;
+    userLogin(this.state);
   }
 
   render() {
@@ -97,7 +98,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  userLoginAction: bindActionCreators(userLogin, dispatch),
+  userLogin: bindActionCreators(actions.userLogin, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
