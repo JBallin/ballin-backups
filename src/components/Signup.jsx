@@ -192,6 +192,11 @@ class Signup extends Component {
         {errorMessage}
       </Alert>
     );
+    const submitButton = (
+      <Button color="primary" disabled={isLoading || showSignupError}>
+        Sign Up
+      </Button>
+    );
     const form = (
       <Form onSubmit={this.handleSubmit}>
         { gistIdField }
@@ -199,8 +204,8 @@ class Signup extends Component {
         { emailField }
         { passwordField }
         { verifyPasswordField }
-        <Button color="primary" type="submit">Sign Up</Button>
         { showSignupError && errorAlert }
+        { submitButton }
         { isLoading && <FormSpinner /> }
       </Form>
     );
