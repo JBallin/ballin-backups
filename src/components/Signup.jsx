@@ -13,9 +13,21 @@ import {
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import * as actions from '../actions/signup.actions';
 
 class Signup extends Component {
+  static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    showSignupError: PropTypes.bool.isRequired,
+    errorMessage: PropTypes.string.isRequired,
+    invalidGist: PropTypes.bool.isRequired,
+    resetInvalidGist: PropTypes.func.isRequired,
+    invalidEmail: PropTypes.bool.isRequired,
+    userSignup: PropTypes.func.isRequired,
+    validateSignup: PropTypes.func.isRequired,
+  }
+
   state = {
     gistId: '',
     email: '',
@@ -210,8 +222,18 @@ class Signup extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  userSignupAction: bindActionCreators(userSignup, dispatch),
+const mapStateToProps = state => ({
+  showSignupError: state.signup.showSignupError,
+  errorMessage: state.signup.errorMessage,
+  isLoading: state.signup.isLoading,
+  invalidEmail: state.signup.invalidEmail,
+  invalidGist: state.signup.invalidGist,
 });
 
-export default connect(null, mapDispatchToProps)(Signup);
+const mapDispatchToProps = dispatch => ({
+  validateSignup: bindActionCreators(actions.validateSignup, dispatch),
+  userSignup: bindActionCreators(actions.userSignup, dispatch),
+  resetInvalidGist: bindActionCreators(actions.resetInvalidGist, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
