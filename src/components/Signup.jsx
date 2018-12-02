@@ -13,9 +13,7 @@ import {
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { userSignup } from '../actions/auth.actions';
-
-const fields = ['gistId', 'email', 'username', 'password', 'verifyPassword'];
+import * as actions from '../actions/signup.actions';
 
 class Signup extends Component {
   state = {
@@ -24,8 +22,6 @@ class Signup extends Component {
     username: '',
     password: '',
     verifyPassword: '',
-    errorMessage: '',
-    missing: [],
   }
 
   handleChange = async (e) => {
@@ -87,7 +83,7 @@ class Signup extends Component {
   render() {
     document.title = 'Signup | My Sweet Config';
     const {
-      gistId, email, username, password, verifyPassword, errorMessage, missing, isValidGist,
+      gistId, email, username, password, verifyPassword,
     } = this.state;
     const colStyle = ({
       border: '1px solid #c9c5c2',
