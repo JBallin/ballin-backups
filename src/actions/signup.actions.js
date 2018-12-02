@@ -1,8 +1,21 @@
+export const INVALID_EMAIL = 'INVALID_EMAIL';
+
 export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING';
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS';
 export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED';
 
 const API_URL = process.env.REACT_APP_API;
+
+const validateEmail = (email) => {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+};
+
+export const validateSignup = formData => (dispatch) => {
+  const { email, password, verifyPassword } = formData;
+  if (email && !validateEmail(email)) {
+    dispatch({ type: INVALID_EMAIL });
+};
 
 export const userSignup = newUser => async (dispatch) => {
   try {

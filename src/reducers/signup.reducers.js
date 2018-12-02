@@ -1,4 +1,5 @@
 import {
+  INVALID_EMAIL,
   USER_SIGNUP_PENDING,
   USER_SIGNUP_SUCCESS,
   USER_SIGNUP_FAILED,
@@ -8,10 +9,15 @@ const initialState = {
   isLoading: false,
   showSignupError: false,
   errorMessage: '',
+  invalidEmail: false,
 };
 
 export default(state = initialState, action) => {
   switch (action.type) {
+    case INVALID_EMAIL:
+      return {
+        ...state, errorMessage: 'Invalid email', showSignupError: true, invalidEmail: true,
+      };
     case USER_SIGNUP_PENDING:
       return { ...state, isLoading: true, invalidEmail: false };
     case USER_SIGNUP_SUCCESS:
