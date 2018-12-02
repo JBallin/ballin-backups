@@ -15,12 +15,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { userSignup } from '../actions/auth.actions';
 
-const validateGistAPI = `${process.env.REACT_APP_API}/validateGist`;
 const fields = ['gistId', 'email', 'username', 'password', 'verifyPassword'];
 
 class Signup extends Component {
   state = {
-    isValidGist: null,
     gistId: '',
     email: '',
     username: '',
