@@ -2,6 +2,8 @@ import {
   INVALID_EMAIL,
   PASSWORD_MISMATCH,
   MISSING_FIELDS,
+  INVALID_GIST_ID,
+  RESET_INVALID_GIST_ID,
   USER_SIGNUP_PENDING,
   USER_SIGNUP_SUCCESS,
   USER_SIGNUP_FAILED,
@@ -12,6 +14,7 @@ const initialState = {
   showSignupError: false,
   errorMessage: '',
   invalidEmail: false,
+  invalidGist: false,
 };
 
 export default(state = initialState, action) => {
@@ -27,6 +30,14 @@ export default(state = initialState, action) => {
     case MISSING_FIELDS:
       return {
         ...state, errorMessage: 'Missing fields', showSignupError: true, invalidEmail: false,
+      };
+    case INVALID_GIST_ID:
+      return {
+        ...state, invalidGist: true,
+      };
+    case RESET_INVALID_GIST_ID:
+      return {
+        ...state, invalidGist: false,
       };
     case USER_SIGNUP_PENDING:
       return { ...state, isLoading: true, invalidEmail: false };

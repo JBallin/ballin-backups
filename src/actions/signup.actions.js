@@ -1,6 +1,8 @@
 export const PASSWORD_MISMATCH = 'PASSWORD_MISMATCH';
 export const MISSING_FIELDS = 'MISSING_FIELDS';
 export const INVALID_EMAIL = 'INVALID_EMAIL';
+export const INVALID_GIST_ID = 'INVALID_GIST_ID';
+export const RESET_INVALID_GIST_ID = 'RESET_INVALID_GIST_ID';
 
 export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING';
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS';
@@ -11,6 +13,10 @@ const API_URL = process.env.REACT_APP_API;
 const validateEmail = (email) => {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
+};
+
+export const resetInvalidGist = () => (dispatch) => {
+  dispatch({ type: RESET_INVALID_GIST_ID });
 };
 
 export const validateSignup = formData => (dispatch) => {
