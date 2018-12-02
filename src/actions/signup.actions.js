@@ -1,4 +1,5 @@
 export const PASSWORD_MISMATCH = 'PASSWORD_MISMATCH';
+export const MISSING_FIELDS = 'MISSING_FIELDS';
 export const INVALID_EMAIL = 'INVALID_EMAIL';
 
 export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING';
@@ -18,6 +19,8 @@ export const validateSignup = formData => (dispatch) => {
     dispatch({ type: INVALID_EMAIL });
   } else if (password !== verifyPassword) {
     dispatch({ type: PASSWORD_MISMATCH });
+  } else if (Object.keys(formData).find(key => !formData[key])) {
+    dispatch({ type: MISSING_FIELDS });
 };
 
 export const userSignup = newUser => async (dispatch) => {
