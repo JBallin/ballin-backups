@@ -37,44 +37,16 @@ class Signup extends Component {
   }
 
   handleChange = async (e) => {
-    const newState = { [e.target.name]: e.target.value };
-    if (e.target.name === 'gistId') newState.isValidGist = null;
-    await this.setState(newState);
-    const { errorMessage } = this.state;
-    if (errorMessage) await this.validateForm();
+    const {
+      resetInvalidGist, errorMessage, validateSignup,
+    } = this.props;
+    await this.setState({ [e.target.name]: e.target.value });
+    if (errorMessage) {
+      validateSignup(this.state);
+      resetInvalidGist();
+    }
   }
 
-  validateForm = async () => {
-    const {
-      isValidGist, gistId, password, verifyPassword,
-    } = this.state;
-    const missing = fields.reduce((missingFields, field) => (
-      // eslint-disable-next-line react/destructuring-assignment
-      this.state[field] ? missingFields : missingFields.concat(field)
-    ), []);
-    let errorMessage = '';
-    let validGist = isValidGist;
-    const checkValidGist = () => fetch(`${validateGistAPI}/${gistId}`)
-      .then(r => r.json()).then(j => j.isValid);
-
-    if (!validGist) {
-      if (validGist === null && gistId) validGist = await checkValidGist();
-      if (validGist === false) errorMessage = 'Invalid Gist ID';
-    }
-
-    if (missing.length) {
-      if (!errorMessage) errorMessage = 'Missing fields';
-    }
-
-    if (password !== verifyPassword) {
-      if (!errorMessage) errorMessage = 'Passwords do not match';
-    }
-
-    this.setState({
-      missing,
-      errorMessage,
-      isValidGist: validGist,
-    });
   }
 
   userSignup = async (e) => {
