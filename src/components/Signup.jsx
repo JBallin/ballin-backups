@@ -39,10 +39,10 @@ class Signup extends Component {
 
   handleChange = async (e) => {
     const {
-      resetInvalidGist, errorMessage, validateSignup,
+      resetInvalidGist, showSignupError, validateSignup,
     } = this.props;
     await this.setState({ [e.target.name]: e.target.value });
-    if (errorMessage) {
+    if (showSignupError) {
       validateSignup(this.state);
       resetInvalidGist();
     }
@@ -62,8 +62,8 @@ class Signup extends Component {
       validateSignup, userSignup,
     } = this.props;
     await validateSignup(this.state);
-    const { errorMessage } = this.props;
-    if (!errorMessage) {
+    const { showSignupError } = this.props;
+    if (!showSignupError) {
       const newUser = this.formatUser(this.state);
       await userSignup(newUser);
     }
@@ -90,10 +90,10 @@ class Signup extends Component {
         </Label>
         <Input
           invalid={
-            !!errorMessage && (!gistId || invalidGist)
+            showSignupError && (!gistId || invalidGist)
           }
           valid={
-            !!errorMessage && !!gistId && !invalidGist
+            showSignupError && !!gistId && !invalidGist
           }
           autoFocus
           type="text"
@@ -111,10 +111,10 @@ class Signup extends Component {
         </Label>
         <Input
           invalid={
-            !!errorMessage && !username
+            showSignupError && !username
           }
           valid={
-            !!errorMessage && !!username
+            showSignupError && !!username
           }
           type="text"
           name="username"
@@ -132,10 +132,10 @@ class Signup extends Component {
         </Label>
         <Input
           invalid={
-            !!errorMessage && (!email || invalidEmail)
+            showSignupError && (!email || invalidEmail)
           }
           valid={
-            !!errorMessage && (!!email && !invalidEmail)
+            showSignupError && (!!email && !invalidEmail)
           }
           name="email"
           id="email"
@@ -152,10 +152,10 @@ class Signup extends Component {
         </Label>
         <Input
           invalid={
-            !!errorMessage && !password
+            showSignupError && !password
           }
           valid={
-            !!errorMessage && !!password
+            showSignupError && !!password
           }
           type="password"
           name="password"
@@ -173,10 +173,10 @@ class Signup extends Component {
         </Label>
         <Input
           invalid={
-            !!errorMessage && (!verifyPassword || password !== verifyPassword)
+            showSignupError && (!verifyPassword || password !== verifyPassword)
           }
           valid={
-            !!errorMessage && (!!verifyPassword && password === verifyPassword)
+            showSignupError && (!!verifyPassword && password === verifyPassword)
           }
           type="password"
           name="verifyPassword"
