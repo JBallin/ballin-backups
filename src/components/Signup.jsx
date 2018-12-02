@@ -73,24 +73,14 @@ class Signup extends Component {
     const {
       gistId, email, username, password, verifyPassword,
     } = this.state;
+    const {
+      isLoading, showSignupError, errorMessage, invalidEmail, invalidGist,
+    } = this.props;
     const colStyle = ({
       border: '1px solid #c9c5c2',
       padding: 35,
       boxShadow: '3px 3px 47px 0px rgba(0,0,0,0.5)',
     });
-    const isFieldInvalid = field => errorMessage !== '' && missing.includes(field);
-    const isGistInvalid = () => {
-      if (errorMessage) {
-        return missing.includes('gistId') || isValidGist === false;
-      }
-      return false;
-    };
-    const isPassInvalid = (field) => {
-      if (errorMessage) {
-        return missing.includes(field) || verifyPassword !== password;
-      }
-      return false;
-    };
     const gistIdField = (
       <FormGroup>
         <Label for="gistId-field">
@@ -98,7 +88,9 @@ class Signup extends Component {
           <Link to="/signup/help" className="ml-1">(Help)</Link>
         </Label>
         <Input
-          invalid={isGistInvalid()}
+          invalid={
+            !!errorMessage && (!gistId || invalidGist)
+          }
           autoFocus
           type="text"
           name="gistId"
@@ -114,7 +106,9 @@ class Signup extends Component {
           Username
         </Label>
         <Input
-          invalid={isFieldInvalid('username')}
+          invalid={
+            !!errorMessage && !username
+          }
           type="text"
           name="username"
           id="username-field"
@@ -130,8 +124,10 @@ class Signup extends Component {
           Email
         </Label>
         <Input
-          invalid={isFieldInvalid('email')}
           type="email"
+          invalid={
+            !!errorMessage && (!email || invalidEmail)
+          }
           name="email"
           id="email-field"
           value={email}
@@ -146,7 +142,9 @@ class Signup extends Component {
           Password
         </Label>
         <Input
-          invalid={isPassInvalid('password')}
+          invalid={
+            !!errorMessage && !password
+          }
           type="password"
           name="password"
           id="password-field"
@@ -162,7 +160,9 @@ class Signup extends Component {
           Verify Password
         </Label>
         <Input
-          invalid={isPassInvalid('verifyPassword')}
+          invalid={
+            !!errorMessage && (!verifyPassword || password !== verifyPassword)
+          }
           type="password"
           name="verifyPassword"
           id="verifyPassword-field"
