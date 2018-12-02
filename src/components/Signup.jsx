@@ -184,10 +184,12 @@ class Signup extends Component {
           onChange={this.handleChange}
           autoComplete="new-password"
         />
-        {errorMessage ? (
-          <Alert color="danger" className="mt-3">{errorMessage}</Alert>
-        ) : null}
       </FormGroup>
+    );
+    const errorAlert = (
+      <Alert color="danger" className="mt-3">
+        {errorMessage}
+      </Alert>
     );
     const form = (
       <Form onSubmit={this.handleSubmit}>
@@ -197,6 +199,7 @@ class Signup extends Component {
         { passwordField }
         { verifyPasswordField }
         <Button color="primary" type="submit">Sign Up</Button>
+        { showSignupError && errorAlert }
       </Form>
     );
 
