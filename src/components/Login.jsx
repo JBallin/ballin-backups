@@ -38,12 +38,12 @@ class Login extends React.Component {
     const loginError = <Alert color="primary">{ errorMessage }</Alert>;
     const emailField = (
       <FormGroup>
-        <Label for="email-field">Email</Label>
+        <Label for="email">Email</Label>
         <Input
           autoFocus
           type="email"
           name="email"
-          id="email-field"
+          id="email"
           value={email}
           onChange={this.handleChange}
           autoComplete="email username"
@@ -52,11 +52,11 @@ class Login extends React.Component {
     );
     const passwordField = (
       <FormGroup>
-        <Label for="password-field">Password</Label>
+        <Label for="password">Password</Label>
         <Input
           type="password"
           name="password"
-          id="password-field"
+          id="password"
           value={password}
           onChange={this.handleChange}
           autoComplete="current-password"

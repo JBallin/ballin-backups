@@ -84,7 +84,7 @@ class Signup extends Component {
     });
     const gistIdField = (
       <FormGroup>
-        <Label for="gistId-field">
+        <Label for="gistId">
           Gist ID
           <Link to="/signup/help" className="ml-1">(Help)</Link>
         </Label>
@@ -98,7 +98,7 @@ class Signup extends Component {
           autoFocus
           type="text"
           name="gistId"
-          id="gistId-field"
+          id="gistId"
           value={gistId}
           onChange={this.handleChange}
         />
@@ -106,7 +106,7 @@ class Signup extends Component {
     );
     const usernameField = (
       <FormGroup>
-        <Label for="username-field">
+        <Label for="username">
           Username
         </Label>
         <Input
@@ -118,7 +118,7 @@ class Signup extends Component {
           }
           type="text"
           name="username"
-          id="username-field"
+          id="username"
           value={username}
           onChange={this.handleChange}
           autoComplete="username"
@@ -127,7 +127,7 @@ class Signup extends Component {
     );
     const emailField = (
       <FormGroup>
-        <Label for="email-field">
+        <Label for="email">
           Email
         </Label>
         <Input
@@ -138,7 +138,7 @@ class Signup extends Component {
             !!errorMessage && (!!email && !invalidEmail)
           }
           name="email"
-          id="email-field"
+          id="email"
           value={email}
           onChange={this.handleChange}
           autoComplete="email username"
@@ -159,7 +159,7 @@ class Signup extends Component {
           }
           type="password"
           name="password"
-          id="password-field"
+          id="password"
           value={password}
           onChange={this.handleChange}
           autoComplete="new-password"
@@ -168,7 +168,7 @@ class Signup extends Component {
     );
     const verifyPasswordField = (
       <FormGroup>
-        <Label for="verifyPassword-field">
+        <Label for="verifyPassword">
           Verify Password
         </Label>
         <Input
@@ -180,7 +180,7 @@ class Signup extends Component {
           }
           type="password"
           name="verifyPassword"
-          id="verifyPassword-field"
+          id="verifyPassword"
           value={verifyPassword}
           onChange={this.handleChange}
           autoComplete="new-password"
