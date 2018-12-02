@@ -63,13 +63,19 @@ class Login extends React.Component {
       </FormGroup>
     );
     const errorAlert = <Alert color="primary">{ errorMessage }</Alert>;
+    const loginButton = (
+      <Button color="primary" className="mr-3" disabled={isLoading}>
+        Login
+      </Button>
+    );
+    const signupLink = <Link to="/signup">Not a member?</Link>;
     const loginForm = (
       <Form onSubmit={this.handleSubmit}>
         { emailField }
         { passwordField }
-        <Button color="primary" className="mr-3" disabled={isLoading}>Login</Button>
-        <Link to="/signup">Not a member?</Link>
         { showLoginError && errorAlert }
+        { loginButton }
+        { signupLink }
       </Form>
     );
     const colStyle = ({
