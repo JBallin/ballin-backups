@@ -35,7 +35,6 @@ class Login extends React.Component {
     document.title = 'Login | My Sweet Config';
     const { email, password } = this.state;
     const { showLoginError, errorMessage, isLoading } = this.props;
-    const loginError = <Alert color="primary">{ errorMessage }</Alert>;
     const emailField = (
       <FormGroup>
         <Label for="email">Email</Label>
@@ -63,13 +62,14 @@ class Login extends React.Component {
         />
       </FormGroup>
     );
+    const errorAlert = <Alert color="primary">{ errorMessage }</Alert>;
     const loginForm = (
       <Form onSubmit={this.handleSubmit}>
         { emailField }
         { passwordField }
-        { showLoginError && loginError }
         <Button color="primary" className="mr-3" disabled={isLoading}>Login</Button>
         <Link to="/signup">Not a member?</Link>
+        { showLoginError && errorAlert }
       </Form>
     );
     const colStyle = ({
