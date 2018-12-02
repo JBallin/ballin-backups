@@ -130,7 +130,6 @@ class Signup extends Component {
           Email
         </Label>
         <Input
-          type="email"
           invalid={
             !!errorMessage && (!email || invalidEmail)
           }
