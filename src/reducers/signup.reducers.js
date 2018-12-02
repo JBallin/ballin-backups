@@ -4,6 +4,7 @@ import {
   MISSING_FIELDS,
   INVALID_GIST_ID,
   RESET_INVALID_GIST_ID,
+  CLEAR_ERRORS,
   USER_SIGNUP_PENDING,
   USER_SIGNUP_SUCCESS,
   USER_SIGNUP_FAILED,
@@ -38,6 +39,10 @@ export default(state = initialState, action) => {
     case RESET_INVALID_GIST_ID:
       return {
         ...state, invalidGist: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state, showSignupError: false, errorMessage: '',
       };
     case USER_SIGNUP_PENDING:
       return { ...state, isLoading: true, invalidEmail: false };

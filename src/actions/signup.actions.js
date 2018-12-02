@@ -3,6 +3,7 @@ export const MISSING_FIELDS = 'MISSING_FIELDS';
 export const INVALID_EMAIL = 'INVALID_EMAIL';
 export const INVALID_GIST_ID = 'INVALID_GIST_ID';
 export const RESET_INVALID_GIST_ID = 'RESET_INVALID_GIST_ID';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING';
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS';
@@ -27,6 +28,9 @@ export const validateSignup = formData => (dispatch) => {
     dispatch({ type: PASSWORD_MISMATCH });
   } else if (Object.keys(formData).find(key => !formData[key])) {
     dispatch({ type: MISSING_FIELDS });
+  } else {
+    dispatch({ type: CLEAR_ERRORS });
+  }
 };
 
 export const userSignup = newUser => async (dispatch) => {
