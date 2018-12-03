@@ -52,6 +52,19 @@ GitHub gists are awesome because they are private and store revision history, bu
   - Auto-deploy post CI success
   - [Production version][4] of React
   - Proper [React Router configuration][5]
+
+## Future Goals
+* Social network
+  * Friends
+  * Likes
+  * Granular privacy settings by file (public, friends, private)
+  * News feed
+  * Notifications
+* Discovery/search
+  - "What are the most popular VS Code configs?"
+* View revision history
+* Edit, delete, and add files
+
 ## Usage
 
 ```shell
