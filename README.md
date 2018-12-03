@@ -1,6 +1,8 @@
 # My Sweet Config
 
-**Visualize & share your dev environment!**
+*Visualize your dev environment*
+<br>
+[sweet-config.herokuapp.com][2]
 
 Q3 React Project at Galvanize's Web Development Immersive.
 
@@ -20,3 +22,5 @@ Note: [API](https://github.com/JBallin/sweet-api) must be running as well.
 * Knex.js
 * PostgreSQL
 * GitHub API
+
+[2]: https://sweet-config.herokuapp.com
