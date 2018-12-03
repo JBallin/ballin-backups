@@ -22,7 +22,10 @@ class Login extends React.Component {
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    const { name } = e.target;
+    let { value } = e.target;
+    if (name === 'email') value = value.toLowerCase();
+    this.setState({ [name]: value });
   }
 
   handleSubmit = (e) => {
