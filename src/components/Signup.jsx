@@ -73,7 +73,7 @@ class Signup extends Component {
     const { showSignupError } = this.props;
     if (!showSignupError) {
       const newUser = this.formatUser(this.state);
-      await userSignup(newUser);
+      userSignup(newUser);
     }
   }
 
