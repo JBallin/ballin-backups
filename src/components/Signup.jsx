@@ -41,7 +41,11 @@ class Signup extends Component {
     const {
       resetInvalidGist, showSignupError, validateSignup,
     } = this.props;
-    await this.setState({ [e.target.name]: e.target.value });
+    const { name } = e.target;
+    let { value } = e.target;
+    const isPassword = name.toLowerCase().includes('password');
+    if (!isPassword) value = value.toLowerCase();
+    await this.setState({ [name]: value });
     if (showSignupError) {
       validateSignup(this.state);
       resetInvalidGist();
