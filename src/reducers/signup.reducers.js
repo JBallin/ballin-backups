@@ -43,7 +43,7 @@ export default(state = initialState, action) => {
       };
     case CLEAR_ERRORS:
       return {
-        ...state, showSignupError: false, errorMessage: '',
+        ...state, errorMessage: '', showSignupError: false,
       };
     case USER_SIGNUP_PENDING:
       return { ...state, isLoading: true, invalidEmail: false };
@@ -53,7 +53,7 @@ export default(state = initialState, action) => {
       };
     case USER_SIGNUP_FAILED:
       return {
-        ...state, isLoading: false, showSignupError: true, errorMessage: action.payload,
+        ...state, isLoading: false, errorMessage: action.payload, showSignupError: true,
       };
     default:
       return state;
