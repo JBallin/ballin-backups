@@ -15,7 +15,8 @@ GitHub gists are awesome because they are private and store revision history, bu
 ###### Solution
 [My Sweet Config][2], named after the pride (sweet) we take in our (my) configs, allows you to view your files by category in a clean interface designed specifically for [ballin scripts][1].
 
-### Usage
+## Tech Stack
+## Usage
 
 ```shell
 $ yarn install
@@ -24,7 +25,6 @@ $ yarn start
 
 Note: [API](https://github.com/JBallin/sweet-api) must be running as well.
 
-### Tech Stack
 * React.js
 * Node.js
 * Express.js
