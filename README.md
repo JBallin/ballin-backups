@@ -6,18 +6,18 @@
 
 ## Description
 
-###### Purpose
+##### Purpose
 I built this as an extension to my Command Line App, [ballin scripts][1], which includes (among other things) a way to automatically backup your developer environment to a gist by simply typing `$ gu` in the command line.
 
-###### Pain
+##### Pain
 GitHub gists are awesome because they are private and store revision history, but they don't provide a good user experience when you want to look at your files within the gist.
 
-###### Solution
+##### Solution
 [My Sweet Config][2], named after the pride (sweet) we take in our (my) configs, allows you to view your files by category in a clean interface designed specifically for [ballin scripts][1].
 
 ## Tech Stack
 
-###### React Frontend
+##### React Frontend
 * React.js (user interface library)
   - Built with [Create React App](https://github.com/facebook/create-react-app)
 * React Router
@@ -26,7 +26,7 @@ GitHub gists are awesome because they are private and store revision history, bu
 * Extensive (custom) form validation
 * Loading spinners
 
-###### Node Backend
+##### Node Backend
 * Node.js
 * Express.js (Node.js Web Framework)
 * Knex.js (SQL Query Builder)
@@ -42,10 +42,10 @@ GitHub gists are awesome because they are private and store revision history, bu
 * ESLint (Airbnb style guide)
   - Also used on frontend, which required [custom configuration][3] to work with Create React App
 
-###### External API's
+##### External API's
 * GitHub
 
-###### Deployment
+##### Deployment
 * Travis CI (automated testing)
 * Heroku
   - Pipelines and review/staging apps
