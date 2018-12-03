@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import {
   Button, Form, FormGroup, Label, Container, Row, Col, Alert, Input,
 } from 'reactstrap';
@@ -14,6 +14,13 @@ class Login extends React.Component {
     errorMessage: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired,
     userLogin: PropTypes.func.isRequired,
+    user: PropTypes.shape({
+      username: PropTypes.string,
+    }),
+  }
+
+  static defaultProps = {
+    user: {},
   }
 
   state = {
@@ -37,7 +44,9 @@ class Login extends React.Component {
   render() {
     document.title = 'Login | My Sweet Config';
     const { email, password } = this.state;
-    const { showLoginError, errorMessage, isLoading } = this.props;
+    const {
+      showLoginError, errorMessage, isLoading, user,
+    } = this.props;
     const emailField = (
       <FormGroup>
         <Label for="email">Email</Label>
@@ -91,7 +100,7 @@ class Login extends React.Component {
       <Container className="main-wrapper">
         <Row style={{ marginTop: '15vh' }}>
           <Col lg={{ size: 6, offset: 3 }} style={colStyle}>
-            { loginForm }
+            { user.username ? <Redirect to="/profile" /> : loginForm }
           </Col>
         </Row>
       </Container>
