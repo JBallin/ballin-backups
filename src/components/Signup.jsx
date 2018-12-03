@@ -23,10 +23,12 @@ class Signup extends Component {
     showSignupError: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
     invalidGist: PropTypes.bool.isRequired,
+    signupSuccessful: PropTypes.bool.isRequired,
     resetInvalidGist: PropTypes.func.isRequired,
     invalidEmail: PropTypes.bool.isRequired,
     userSignup: PropTypes.func.isRequired,
     validateSignup: PropTypes.func.isRequired,
+    resetSignup: PropTypes.func.isRequired,
   }
 
   state = {
@@ -79,7 +81,8 @@ class Signup extends Component {
       gistId, email, username, password, verifyPassword,
     } = this.state;
     const {
-      isLoading, showSignupError, errorMessage, invalidEmail, invalidGist,
+      isLoading, showSignupError, errorMessage, invalidEmail, invalidGist, signupSuccessful,
+      resetSignup,
     } = this.props;
     const colStyle = ({
       border: '1px solid #c9c5c2',
@@ -232,12 +235,14 @@ const mapStateToProps = state => ({
   isLoading: state.signup.isLoading,
   invalidEmail: state.signup.invalidEmail,
   invalidGist: state.signup.invalidGist,
+  signupSuccessful: state.signup.signupSuccessful,
 });
 
 const mapDispatchToProps = dispatch => ({
   validateSignup: bindActionCreators(actions.validateSignup, dispatch),
   userSignup: bindActionCreators(actions.userSignup, dispatch),
   resetInvalidGist: bindActionCreators(actions.resetInvalidGist, dispatch),
+  resetSignup: bindActionCreators(actions.resetSignup, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);
