@@ -77,6 +77,12 @@ $ yarn start
 
 Note: [API](https://github.com/JBallin/sweet-api) must be running as well.
 
+## Testing
+
+```shell
+$ yarn test
+```
+
 ### Footnotes
 
 All articles linked were written by [me][6].
