@@ -9,6 +9,8 @@ export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING';
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS';
 export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED';
 
+export const RESET_SIGNUP = 'RESET_SIGNUP';
+
 const API_URL = process.env.REACT_APP_API;
 
 const validateEmail = (email) => {
@@ -57,4 +59,10 @@ export const userSignup = newUser => async (dispatch) => {
       payload: errorMessage,
     });
   }
+};
+
+export const resetSignup = () => (dispatch) => {
+  dispatch({
+    type: RESET_SIGNUP,
+  });
 };

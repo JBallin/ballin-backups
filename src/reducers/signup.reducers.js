@@ -8,6 +8,7 @@ import {
   USER_SIGNUP_PENDING,
   USER_SIGNUP_SUCCESS,
   USER_SIGNUP_FAILED,
+  RESET_SIGNUP,
 } from '../actions/signup.actions';
 
 const initialState = {
@@ -55,6 +56,8 @@ export default(state = initialState, action) => {
       return {
         ...state, isLoading: false, errorMessage: action.payload, showSignupError: true,
       };
+    case RESET_SIGNUP:
+      return initialState;
     default:
       return state;
   }
