@@ -7,7 +7,7 @@
 ## Description
 
 ##### Purpose
-I built this as an extension to my command line app, [ballin scripts][1], which includes (among other things) a way to automatically backup your developer environment to a gist by simply typing `$ gu` in the command line.
+I built this as an extension to my command line app, [ballin scripts][1], which includes (among other things) a way to automatically backup your developer environment (`.bash_profile`, `brew list`, etc.) to a gist by simply typing `$ gu` in the command line.
 
 ##### Pain
 GitHub gists are awesome because they are private and store revision history, but they don't provide a good user experience when you want to look at your files within the gist.
