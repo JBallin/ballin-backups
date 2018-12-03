@@ -77,5 +77,13 @@ $ yarn start
 
 Note: [API](https://github.com/JBallin/sweet-api) must be running as well.
 
+### Footnotes
 
+All articles linked were written by [me][6].
+
+[1]: https://github.com/JBallin/ballin-scripts
 [2]: https://sweet-config.herokuapp.com
+[3]: https://hackernoon.com/a-simple-linter-setup-finally-d908877fa09
+[4]: https://hackernoon.com/properly-deploy-your-react-app-to-heroku-c1a13f5f978c
+[5]: https://medium.com/@PrintSupWorld/how-to-deploy-a-react-router-app-to-heroku-d59e4f194ec8
+[6]: https://medium.com/@PrintSupWorld
