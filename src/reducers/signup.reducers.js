@@ -16,6 +16,7 @@ const initialState = {
   errorMessage: '',
   invalidEmail: false,
   invalidGist: false,
+  signupSuccessful: false,
 };
 
 export default(state = initialState, action) => {
@@ -48,7 +49,7 @@ export default(state = initialState, action) => {
       return { ...state, isLoading: true, invalidEmail: false };
     case USER_SIGNUP_SUCCESS:
       return {
-        ...state, isLoading: false, errorMessage: '', showSignupError: false,
+        ...state, isLoading: false, errorMessage: '', showSignupError: false, signupSuccessful: true,
       };
     case USER_SIGNUP_FAILED:
       return {
