@@ -10,7 +10,7 @@ import {
   Alert,
   Input,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -225,9 +225,19 @@ class Signup extends Component {
         </Col>
       </Row>
     );
+    const alertSuccessAndRedirect = () => {
+      resetSignup();
+      Swal({
+        type: 'success',
+        title: `Welcome ${username}!`,
+        confirmButtonText: 'Login',
+      });
+      return <Redirect to="/login" />;
+    };
 
     return (
       <Container className="main-wrapper">
+        { signupSuccessful ? alertSuccessAndRedirect() : styledForm }
       </Container>
     );
   }
