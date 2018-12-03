@@ -216,14 +216,16 @@ class Signup extends Component {
         { isLoading && <FormSpinner /> }
       </Form>
     );
+    const styledForm = (
+      <Row style={{ marginTop: '10vh', marginBottom: '10vh' }}>
+        <Col lg={{ size: 6, offset: 3 }} style={colStyle}>
+          { form }
+        </Col>
+      </Row>
+    );
 
     return (
       <Container className="main-wrapper">
-        <Row style={{ marginTop: '10vh', marginBottom: '10vh' }}>
-          <Col lg={{ size: 6, offset: 3 }} style={colStyle}>
-            { form }
-          </Col>
-        </Row>
       </Container>
     );
   }
