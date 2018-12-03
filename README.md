@@ -32,10 +32,10 @@ GitHub gists are awesome because they are private and store revision history, bu
 * Knex.js (SQL Query Builder)
 * PostgreSQL
 * Advanced Authentication and Authorization
- - bcrypt (only storing hashed passwords)
- - JSON Web Token (sent as cookies with every request)
- - httpOnly & secure (https) cookies
- - CORS (Restricted API access)
+  - bcrypt (only storing hashed passwords)
+  - JSON Web Token (sent as cookies with every request)
+  - httpOnly & secure (https) cookies
+  - CORS (Restricted API access)
 * Extensive error handling
 * SuperTest/Mocha/Chai (extensive testing of routes/errors)
 * Model-View-Controller design pattern
