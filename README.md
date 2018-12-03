@@ -65,6 +65,9 @@ GitHub gists are awesome because they are private and store revision history, bu
 * View revision history
 * Edit, delete, and add files
 
+## Demo Login
+email: `demo@gmail(.com)` password: `hello`
+
 ## Usage
 
 ```shell
