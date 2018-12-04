@@ -10,17 +10,7 @@ import UserProfile from './components/UserProfile';
 import NoMatch from './components/NoMatch';
 import SignupHelp from './components/SignupHelp';
 
-const AppRouter = () => (
-  <Switch>
-    <Route path="/" exact render={() => <Redirect to="/login" />} />
-    <Route path="/login" component={Login} />
-    <Route path="/logout" component={Logout} />
-    <Route path="/signup/help" component={SignupHelp} />
-    <Route path="/signup" component={Signup} />
-    <Route path="/profile" component={UserProfile} />
-    <Route component={NoMatch} />
-  </Switch>
-);
+class AppRouter extends React.Component {
   static propTypes = {
     user: PropTypes.shape({
       username: PropTypes.string,
@@ -31,6 +21,15 @@ const AppRouter = () => (
       pathname: PropTypes.string.isRequired,
     }).isRequired,
   };
+
+  state = {
+    initialPath: '',
+  }
+
+  componentDidMount() {
+    const { location } = this.props;
+    this.setState({ initialPath: location.pathname });
+  }
 
 const mapStateToProps = state => ({
   user: state.auth.user,
