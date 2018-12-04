@@ -1,4 +1,4 @@
-export const API_FETCH_FAILED = 'API_FETCH_FAILED';
+import { API_FETCH_FAILED } from '../reducers/api.reducers';
 
 export const TOKEN_LOGIN_PENDING = 'TOKEN_LOGIN_PENDING';
 export const TOKEN_LOGIN_SUCCESS = 'TOKEN_LOGIN_SUCCESS';
