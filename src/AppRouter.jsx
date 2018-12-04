@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Login from './components/Login';
 import Logout from './components/Logout';
@@ -19,5 +21,21 @@ const AppRouter = () => (
     <Route component={NoMatch} />
   </Switch>
 );
+  static propTypes = {
+    user: PropTypes.shape({
+      username: PropTypes.string,
+    }).isRequired,
+    tokenLoginFailure: PropTypes.bool.isRequired,
+    APIFetchFailure: PropTypes.bool.isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  };
 
-export default AppRouter;
+const mapStateToProps = state => ({
+  user: state.auth.user,
+  tokenLoginFailure: state.auth.tokenLoginFailure,
+  APIFetchFailure: state.api.APIFetchFailure,
+});
+
+export default withRouter(connect(mapStateToProps, null)(AppRouter));
