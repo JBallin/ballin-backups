@@ -1,3 +1,5 @@
+export const API_FETCH_FAILED = 'API_FETCH_FAILED';
+
 export const TOKEN_LOGIN_PENDING = 'TOKEN_LOGIN_PENDING';
 export const TOKEN_LOGIN_SUCCESS = 'TOKEN_LOGIN_SUCCESS';
 export const TOKEN_LOGIN_FAILED = 'TOKEN_LOGIN_FAILED';
@@ -26,6 +28,11 @@ export const tokenLogin = () => async (dispatch) => {
       payload: userObject,
     });
   } catch (err) {
+    if (err instanceof TypeError) {
+      dispatch({
+        type: API_FETCH_FAILED,
+      });
+    } else {
       dispatch({
         type: TOKEN_LOGIN_FAILED,
         payload: err.message || err,
