@@ -15,9 +15,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
-import FormSpinner from './FormSpinner';
 import * as actions from '../actions/signup.actions';
 import '../css/swal.css';
+
+import FormSpinner from './FormSpinner';
 
 class Signup extends Component {
   static propTypes = {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
+
 import PageSpinner from './PageSpinner';
 import Category from './Category';
 
