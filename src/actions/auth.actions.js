@@ -57,10 +57,16 @@ export const userLogin = ({ email, password }) => async (dispatch) => {
       payload: userObject,
     });
   } catch (err) {
-    dispatch({
-      type: USER_LOGIN_FAILED,
-      payload: err.message || err,
-    });
+    if (err instanceof TypeError) {
+      dispatch({
+        type: API_FETCH_FAILED,
+      });
+    } else {
+      dispatch({
+        type: USER_LOGIN_FAILED,
+        payload: err.message || err,
+      });
+    }
   }
 };
 
