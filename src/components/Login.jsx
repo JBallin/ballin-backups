@@ -16,11 +16,7 @@ class Login extends React.Component {
     userLogin: PropTypes.func.isRequired,
     user: PropTypes.shape({
       username: PropTypes.string,
-    }),
-  }
-
-  static defaultProps = {
-    user: {},
+    }).isRequired,
   }
 
   state = {

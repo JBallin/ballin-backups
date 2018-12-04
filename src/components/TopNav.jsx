@@ -15,12 +15,8 @@ class TopNav extends React.Component {
   static propTypes = {
     user: PropTypes.shape({
       username: PropTypes.string,
-    }),
+    }).isRequired,
     title: PropTypes.string.isRequired,
-  }
-
-  static defaultProps = {
-    user: {},
   }
 
   state = {
