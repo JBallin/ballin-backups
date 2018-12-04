@@ -1,4 +1,7 @@
 import {
+  TOKEN_LOGIN_PENDING,
+  TOKEN_LOGIN_SUCCESS,
+  TOKEN_LOGIN_FAILED,
   USER_LOGIN_PENDING,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAILED,
@@ -13,10 +16,23 @@ const initialState = {
   showLoginError: false,
   showLogoutError: false,
   errorMessage: '',
+  tokenLoginFailure: false,
 };
 
 export default(state = initialState, action) => {
   switch (action.type) {
+    case TOKEN_LOGIN_PENDING:
+      return {
+        ...state, isLoading: true,
+      };
+    case TOKEN_LOGIN_SUCCESS:
+      return {
+        ...state, isLoading: false, user: action.payload,
+      };
+    case TOKEN_LOGIN_FAILED:
+      return {
+        ...state, isLoading: false, tokenLoginFailure: true,
+      };
     case USER_LOGIN_PENDING:
       return {
         ...state, isLoading: true,
