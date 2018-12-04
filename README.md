@@ -50,7 +50,7 @@ GitHub gists are awesome because they are private and store revision history, bu
 * Heroku
   - Pipelines and review/staging apps
   - Auto-deploy post CI success
-  - [Production version][4] of React
+  - [Production build][4] of React
   - Proper [React Router configuration][5]
 
 ## Future Goals
