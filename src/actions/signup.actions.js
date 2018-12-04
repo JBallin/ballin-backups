@@ -1,3 +1,5 @@
+import { API_FETCH_FAILED } from '../reducers/api.reducers';
+
 export const PASSWORD_MISMATCH = 'PASSWORD_MISMATCH';
 export const MISSING_FIELDS = 'MISSING_FIELDS';
 export const INVALID_EMAIL = 'INVALID_EMAIL';
@@ -50,14 +52,20 @@ export const userSignup = newUser => async (dispatch) => {
       payload: user,
     });
   } catch (err) {
-    const errorMessage = err.messag || err;
-    if (errorMessage.includes('gist')) {
-      dispatch({ type: INVALID_GIST_ID });
+    if (err instanceof TypeError) {
+      dispatch({
+        type: API_FETCH_FAILED,
+      });
+    } else {
+      const errorMessage = err.message || err;
+      if (errorMessage.includes('gist')) {
+        dispatch({ type: INVALID_GIST_ID });
+      }
+      dispatch({
+        type: USER_SIGNUP_FAILED,
+        payload: errorMessage,
+      });
     }
-    dispatch({
-      type: USER_SIGNUP_FAILED,
-      payload: errorMessage,
-    });
   }
 };
 
