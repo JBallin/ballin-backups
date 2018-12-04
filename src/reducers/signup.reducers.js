@@ -47,7 +47,9 @@ export default(state = initialState, action) => {
         ...state, errorMessage: '', showSignupError: false,
       };
     case USER_SIGNUP_PENDING:
-      return { ...state, isLoading: true, invalidEmail: false };
+      return {
+        ...state, isLoading: true, invalidEmail: false,
+      };
     case USER_SIGNUP_SUCCESS:
       return {
         ...state, isLoading: false, errorMessage: '', showSignupError: false, signupSuccessful: true,
