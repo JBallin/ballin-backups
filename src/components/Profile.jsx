@@ -24,13 +24,11 @@ class Profile extends Component {
       const delay = 700;
       const delayedPromise = new Promise(resolve => setTimeout(resolve, delay));
       const getFiles = fetch(`${API}/files`).then(r => r.json());
-      const files = (await Promise.all([getFiles, delayedPromise]))[0];
-      const users = await fetch(`${API}/users`).then(r => r.json());
-      const gistID = users[0].gist_id;
+      const [files] = await Promise.all([getFiles, delayedPromise]);
       if (files.error) {
         this.setState({ error: files.error, isLoading: false });
       } else {
-        this.setState({ files, gistID, isLoading: false });
+        this.setState({ files, isLoading: false });
       }
     } catch (e) {
       this.setState({ error: e.message });
