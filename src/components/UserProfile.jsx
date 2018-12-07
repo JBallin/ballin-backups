@@ -33,6 +33,7 @@ class UserProfile extends Component {
   }
 
   render() {
+    document.title = 'Profile | My Sweet Config';
     const {
       files, gistID, isLoading, error,
     } = this.state;
