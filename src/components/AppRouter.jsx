@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import Login from './Login';
 import Logout from './Logout';
 import Signup from './Signup';
-import UserProfile from './UserProfile';
+import Profile from './Profile';
 import NoMatch from './NoMatch';
 import SignupHelp from './SignupHelp';
 import Auth from './Auth';
@@ -55,7 +55,7 @@ class AppRouter extends React.Component {
         <Route path="/logout" component={Logout} />
         <Route path="/signup/help" component={SignupHelp} />
         <Route path="/signup" component={Signup} />
-        <Route path="/profile" component={UserProfile} />
+        <Route path="/profile" component={Profile} />
         <Route component={NoMatch} />
       </Switch>
     );

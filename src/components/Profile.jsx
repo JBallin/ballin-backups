@@ -6,7 +6,7 @@ import Category from './Category';
 
 const API = process.env.REACT_APP_API;
 
-class UserProfile extends Component {
+class Profile extends Component {
   state = {
     files: [],
     gistID: '',
@@ -58,4 +58,4 @@ class UserProfile extends Component {
   }
 }
 
-export default UserProfile;
+export default Profile;
