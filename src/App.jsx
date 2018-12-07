@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 
-import AppRouter from './AppRouter';
+import AppRouter from './components/AppRouter';
 import TopNav from './components/TopNav';
 
 const App = () => (

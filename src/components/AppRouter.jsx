@@ -5,14 +5,14 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Login from './components/Login';
-import Logout from './components/Logout';
-import Signup from './components/Signup';
-import UserProfile from './components/UserProfile';
-import NoMatch from './components/NoMatch';
-import SignupHelp from './components/SignupHelp';
-import Auth from './components/Auth';
-import SiteDown from './components/SiteDown';
+import Login from './Login';
+import Logout from './Logout';
+import Signup from './Signup';
+import UserProfile from './UserProfile';
+import NoMatch from './NoMatch';
+import SignupHelp from './SignupHelp';
+import Auth from './Auth';
+import SiteDown from './SiteDown';
 
 class AppRouter extends React.Component {
   static propTypes = {
