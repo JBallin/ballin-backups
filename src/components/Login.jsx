@@ -96,7 +96,7 @@ class Login extends React.Component {
       <Container className="main-wrapper">
         <Row style={{ marginTop: '15vh' }}>
           <Col lg={{ size: 6, offset: 3 }} style={colStyle}>
-            { user.username ? <Redirect to="/profile" /> : loginForm }
+            { user.username ? <Redirect push to="/profile" /> : loginForm }
           </Col>
         </Row>
       </Container>

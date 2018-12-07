@@ -28,7 +28,7 @@ class Logout extends React.Component {
     const { showLogoutError, errorMessage } = this.props;
     if (attemptedLogout) {
       if (showLogoutError) return <h1>{errorMessage}</h1>;
-      return <Redirect to="/login" />;
+      return <Redirect push to="/login" />;
     }
     return null;
   }

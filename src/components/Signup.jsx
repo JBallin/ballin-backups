@@ -233,7 +233,7 @@ class Signup extends Component {
         title: `Welcome ${username}!`,
         confirmButtonText: 'Login',
       });
-      return <Redirect to="/login" />;
+      return <Redirect push to="/login" />;
     };
 
     return (
