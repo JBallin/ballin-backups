@@ -5,16 +5,42 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { userLogout } from '../redux/actions/auth.actions';
 
-const Logout = ({ userLogoutAction }) => {
-  document.title = 'Logout | My Sweet Config';
-  userLogoutAction();
-  return <Redirect push to="/login" />;
-};
+class Logout extends React.Component {
+  static propTypes = {
+    userLogoutAction: PropTypes.func.isRequired,
+    showLogoutError: PropTypes.bool.isRequired,
+    errorMessage: PropTypes.string.isRequired,
+  };
 
-Logout.propTypes = { userLogoutAction: PropTypes.func.isRequired };
+  state = {
+    attemptedLogout: false,
+  }
+
+  async componentDidMount() {
+    const { userLogoutAction } = this.props;
+    await userLogoutAction();
+    this.setState({ attemptedLogout: true });
+  }
+
+  render() {
+    document.title = 'Logout | My Sweet Config';
+    const { attemptedLogout } = this.state;
+    const { showLogoutError, errorMessage } = this.props;
+    if (attemptedLogout) {
+      if (showLogoutError) return <h1>{errorMessage}</h1>;
+      return <Redirect to="/login" />;
+    }
+    return null;
+  }
+}
+
+const mapStateToProps = state => ({
+  showLogoutError: state.auth.showLogoutError,
+  errorMessage: state.auth.errorMessage,
+});
 
 const mapDispatchToProps = dispatch => ({
   userLogoutAction: bindActionCreators(userLogout, dispatch),
 });
 
-export default connect(null, mapDispatchToProps)(Logout);
+export default connect(mapStateToProps, mapDispatchToProps)(Logout);
