@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import PageSpinner from './PageSpinner';
 import Category from './Category';
@@ -7,9 +9,12 @@ import Category from './Category';
 const API = process.env.REACT_APP_API;
 
 class Profile extends Component {
+  static propTypes = {
+    gistId: PropTypes.string.isRequired,
+  }
+
   state = {
     files: [],
-    gistID: '',
     isLoading: true,
     error: false,
   };
@@ -34,9 +39,8 @@ class Profile extends Component {
 
   render() {
     document.title = 'Profile | My Sweet Config';
-    const {
-      files, gistID, isLoading, error,
-    } = this.state;
+    const { files, isLoading, error } = this.state;
+    const { gistId } = this.props;
     const fileCategories = files.map(({
       category, id, files: filesArr,
     }) => (
@@ -58,4 +62,8 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = state => ({
+  gistId: state.auth.user.gist_id,
+});
+
+export default connect(mapStateToProps, null)(Profile);
