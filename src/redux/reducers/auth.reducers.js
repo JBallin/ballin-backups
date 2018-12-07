@@ -17,6 +17,7 @@ const initialState = {
   showLogoutError: false,
   errorMessage: '',
   tokenLoginFailure: false,
+  isLoggedOut: false,
 };
 
 export default(state = initialState, action) => {
@@ -27,7 +28,7 @@ export default(state = initialState, action) => {
       };
     case TOKEN_LOGIN_SUCCESS:
       return {
-        ...state, isLoading: false, user: action.payload,
+        ...state, isLoading: false, user: action.payload, isLoggedOut: false,
       };
     case TOKEN_LOGIN_FAILED:
       return {
@@ -39,7 +40,7 @@ export default(state = initialState, action) => {
       };
     case USER_LOGIN_SUCCESS:
       return {
-        ...state, isLoading: false, user: action.payload, showLoginError: false, errorMessage: '',
+        ...state, isLoading: false, user: action.payload, showLoginError: false, errorMessage: '', isLoggedOut: false,
       };
     case USER_LOGIN_FAILED:
       return {
@@ -53,7 +54,9 @@ export default(state = initialState, action) => {
         ...state, isLoading: true,
       };
     case USER_LOGOUT_SUCCESS:
-      return initialState;
+      return {
+        ...initialState, isLoggedOut: true,
+      };
     case USER_LOGOUT_FAILED:
       return {
         ...initialState, showLogoutError: true, errorMessage: action.payload,
