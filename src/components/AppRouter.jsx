@@ -21,6 +21,7 @@ class AppRouter extends React.Component {
     }).isRequired,
     tokenLoginFailure: PropTypes.bool.isRequired,
     APIFetchFailure: PropTypes.bool.isRequired,
+    isLoggedOut: PropTypes.bool.isRequired,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
@@ -36,9 +37,11 @@ class AppRouter extends React.Component {
   }
 
   render() {
-    const { user, tokenLoginFailure, APIFetchFailure } = this.props;
+    const {
+      user, tokenLoginFailure, APIFetchFailure, isLoggedOut,
+    } = this.props;
     const { initialPath } = this.state;
-    const checkingAuth = !user.username && !tokenLoginFailure && !APIFetchFailure;
+    const checkingAuth = !user.username && !tokenLoginFailure && !APIFetchFailure && !isLoggedOut;
     return (
       <Switch>
         <Route
@@ -62,6 +65,7 @@ class AppRouter extends React.Component {
 const mapStateToProps = state => ({
   user: state.auth.user,
   tokenLoginFailure: state.auth.tokenLoginFailure,
+  isLoggedOut: state.auth.isLoggedOut,
   APIFetchFailure: state.api.APIFetchFailure,
 });
 
