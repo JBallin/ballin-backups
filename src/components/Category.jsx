@@ -6,7 +6,7 @@ import GistFile from './GistFile';
 class Category extends Component {
   static propTypes = {
     category: PropTypes.string.isRequired,
-    gistID: PropTypes.string.isRequired,
+    gistId: PropTypes.string.isRequired,
     files: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,
       extension: PropTypes.string.isRequired,
@@ -23,7 +23,7 @@ class Category extends Component {
 
   render() {
     const {
-      category, gistID, files,
+      category, gistId, files,
     } = this.props;
     const { display } = this.state;
     const categoryButton = (
@@ -40,7 +40,7 @@ class Category extends Component {
         <GistFile
           title={title}
           extension={extension}
-          gistID={gistID}
+          gistId={gistId}
           key={title + extension}
         />
       ))

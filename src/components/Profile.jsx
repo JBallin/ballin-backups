@@ -44,7 +44,7 @@ class Profile extends Component {
         category={category}
         files={filesArr}
         key={id}
-        gistID={gistID}
+        gistId={gistId}
       />
     ));
     const errorMessage = <h3>{ `Error: ${error}` }</h3>;
