@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { userLogout } from '../actions/auth.actions';
+import { userLogout } from '../redux/actions/auth.actions';
 
 const Logout = ({ userLogoutAction }) => {
   document.title = 'Logout | My Sweet Config';

@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../actions/auth.actions';
+import * as actions from '../redux/actions/auth.actions';
 
 class Login extends React.Component {
   static propTypes = {

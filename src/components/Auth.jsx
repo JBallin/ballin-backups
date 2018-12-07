@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-import * as actions from '../actions/auth.actions';
+import * as actions from '../redux/actions/auth.actions';
 import Spinner from './PageSpinner';
 
 class Auth extends React.Component {
