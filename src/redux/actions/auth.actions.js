@@ -1,4 +1,5 @@
 import { API_FETCH_FAILED } from '../reducers/api.reducers';
+import { RESET_SIGNUP } from './signup.actions';
 
 export const TOKEN_LOGIN_PENDING = 'TOKEN_LOGIN_PENDING';
 export const TOKEN_LOGIN_SUCCESS = 'TOKEN_LOGIN_SUCCESS';
@@ -63,6 +64,7 @@ export const tokenLogin = () => async (dispatch) => {
 };
 
 export const userLogin = ({ email, password }) => async (dispatch) => {
+  dispatch({ type: RESET_SIGNUP });
   try {
     dispatch({ type: USER_LOGIN_PENDING });
     const response = await fetch(`${API_URL}/login`, {
