@@ -11,6 +11,7 @@ const API = process.env.REACT_APP_API;
 class Profile extends Component {
   static propTypes = {
     gistId: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
   }
 
   state = {
@@ -20,10 +21,11 @@ class Profile extends Component {
   };
 
   componentDidMount = async () => {
+    const { userId } = this.props;
     try {
       const delay = 700;
       const delayedPromise = new Promise(resolve => setTimeout(resolve, delay));
-      const getFiles = fetch(`${API}/files`).then(r => r.json());
+      const getFiles = fetch(`${API}/users/${userId}/files`, { credentials: 'include' }).then(r => r.json());
       const [files] = await Promise.all([getFiles, delayedPromise]);
       if (files.error) {
         this.setState({ error: files.error, isLoading: false });
@@ -62,6 +64,7 @@ class Profile extends Component {
 
 const mapStateToProps = state => ({
   gistId: state.auth.user.gist_id,
+  userId: state.auth.user.id,
 });
 
 export default connect(mapStateToProps, null)(Profile);
