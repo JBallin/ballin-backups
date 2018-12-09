@@ -26,12 +26,12 @@ class Signup extends Component {
     showSignupError: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
     invalidGist: PropTypes.bool.isRequired,
-    signupSuccessful: PropTypes.bool.isRequired,
     resetInvalidGist: PropTypes.func.isRequired,
     invalidEmail: PropTypes.bool.isRequired,
     userSignup: PropTypes.func.isRequired,
     validateSignup: PropTypes.func.isRequired,
     resetSignup: PropTypes.func.isRequired,
+    newUser: PropTypes.string.isRequired,
   }
 
   state = {
@@ -84,8 +84,7 @@ class Signup extends Component {
       gistId, email, username, password, verifyPassword,
     } = this.state;
     const {
-      isLoading, showSignupError, errorMessage, invalidEmail, invalidGist, signupSuccessful,
-      resetSignup,
+      isLoading, showSignupError, errorMessage, invalidEmail, invalidGist, newUser, resetSignup,
     } = this.props;
     const colStyle = ({
       border: '1px solid #c9c5c2',
@@ -227,18 +226,18 @@ class Signup extends Component {
       </Row>
     );
     const alertSuccessAndRedirect = () => {
-      resetSignup();
       Swal({
         type: 'success',
         title: `Welcome ${username}!`,
         confirmButtonText: 'Login',
-      });
+      })
+        .then(resetSignup);
       return <Redirect push to="/login" />;
     };
 
     return (
       <Container className="main-wrapper">
-        { signupSuccessful ? alertSuccessAndRedirect() : styledForm }
+        { newUser ? alertSuccessAndRedirect() : styledForm }
       </Container>
     );
   }
@@ -250,7 +249,7 @@ const mapStateToProps = state => ({
   isLoading: state.signup.isLoading,
   invalidEmail: state.signup.invalidEmail,
   invalidGist: state.signup.invalidGist,
-  signupSuccessful: state.signup.signupSuccessful,
+  newUser: state.signup.newUser,
 });
 
 const mapDispatchToProps = dispatch => ({
