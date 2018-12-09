@@ -25,8 +25,8 @@ class Profile extends Component {
     try {
       const delay = 700;
       const delayedPromise = new Promise(resolve => setTimeout(resolve, delay));
-      const getFiles = fetch(`${API}/users/${userId}/files`, { credentials: 'include' }).then(r => r.json());
-      const [files] = await Promise.all([getFiles, delayedPromise]);
+      const getFiles = () => fetch(`${API}/users/${userId}/files`, { credentials: 'include' }).then(r => r.json());
+      const [files] = await Promise.all([getFiles(), delayedPromise]);
       if (files.error) {
         this.setState({ error: files.error, isLoading: false });
       } else {
