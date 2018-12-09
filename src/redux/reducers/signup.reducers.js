@@ -17,7 +17,7 @@ const initialState = {
   errorMessage: '',
   invalidEmail: false,
   invalidGist: false,
-  signupSuccessful: false,
+  newUser: '',
 };
 
 export default(state = initialState, action) => {
@@ -52,7 +52,7 @@ export default(state = initialState, action) => {
       };
     case USER_SIGNUP_SUCCESS:
       return {
-        ...state, isLoading: false, errorMessage: '', showSignupError: false, signupSuccessful: true,
+        ...state, isLoading: false, errorMessage: '', showSignupError: false, newUser: action.payload.new_user,
       };
     case USER_SIGNUP_FAILED:
       return {
