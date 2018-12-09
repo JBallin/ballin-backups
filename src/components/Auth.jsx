@@ -39,7 +39,7 @@ class Auth extends React.Component {
   render() {
     document.title = 'Auth | My Sweet Config';
     const {
-      user, tokenLoginFailure, APIFetchFailure, prevPath,
+      user, tokenLoginFailure, APIFetchFailure,
     } = this.props;
     const { checkedAuth } = this.state;
     if (checkedAuth) {
