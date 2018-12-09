@@ -30,6 +30,12 @@ class Auth extends React.Component {
     this.setState({ checkedAuth: true });
   }
 
+  getNextPath = () => {
+    const nextPathOptions = ['/login', '/logout', '/signup', '/signup/help'];
+    const { prevPath } = this.props;
+    return nextPathOptions.includes(prevPath) ? prevPath : '/login';
+  }
+
   render() {
     document.title = 'Auth | My Sweet Config';
     const {
@@ -38,16 +44,7 @@ class Auth extends React.Component {
     const { checkedAuth } = this.state;
     if (checkedAuth) {
       if (APIFetchFailure) return <Redirect to="/site-down" />;
-      if (tokenLoginFailure) {
-        let nextPath;
-        const nextPathOptions = ['/login', '/logout', '/signup', '/signup/help'];
-        if (nextPathOptions.includes(prevPath)) {
-          nextPath = prevPath;
-        } else {
-          nextPath = '/login';
-        }
-        return <Redirect to={nextPath} />;
-      }
+      if (tokenLoginFailure) return <Redirect to={this.getNextPath()} />;
       if (user.username) return <Redirect to="/profile" />;
     }
     return <Spinner />;
