@@ -14,6 +14,26 @@ export const USER_LOGOUT_FAILED = 'USER_LOGOUT_FAILED';
 
 const API_URL = process.env.REACT_APP_API;
 
+export const userLogout = () => async (dispatch) => {
+  try {
+    dispatch({ type: USER_LOGOUT_PENDING });
+    const res = await fetch(`${API_URL}/logout`, {
+      method: 'POST',
+      credentials: 'include',
+    });
+    if (res.status !== 205) {
+      const parsedRes = await res.json();
+      if (parsedRes.error) throw parsedRes.error;
+    }
+    dispatch({ type: USER_LOGOUT_SUCCESS });
+  } catch (err) {
+    dispatch({
+      type: USER_LOGOUT_FAILED,
+      payload: err.message || err,
+    });
+  }
+};
+
 export const tokenLogin = () => async (dispatch) => {
   try {
     dispatch({ type: TOKEN_LOGIN_PENDING });
@@ -37,6 +57,7 @@ export const tokenLogin = () => async (dispatch) => {
         type: TOKEN_LOGIN_FAILED,
         payload: err.message || err,
       });
+      if (err === 'Invalid token') dispatch(userLogout());
     }
   }
 };
@@ -67,25 +88,5 @@ export const userLogin = ({ email, password }) => async (dispatch) => {
         payload: err.message || err,
       });
     }
-  }
-};
-
-export const userLogout = () => async (dispatch) => {
-  try {
-    dispatch({ type: USER_LOGOUT_PENDING });
-    const res = await fetch(`${API_URL}/logout`, {
-      method: 'POST',
-      credentials: 'include',
-    });
-    if (res.status !== 205) {
-      const parsedRes = await res.json();
-      if (parsedRes.error) throw parsedRes.error;
-    }
-    dispatch({ type: USER_LOGOUT_SUCCESS });
-  } catch (err) {
-    dispatch({
-      type: USER_LOGOUT_FAILED,
-      payload: err.message || err,
-    });
   }
 };
