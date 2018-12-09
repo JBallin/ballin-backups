@@ -10,6 +10,8 @@ import {
   USER_LOGOUT_FAILED,
 } from '../actions/auth.actions';
 
+export const RESET_LOGIN_ERROR = 'RESET_LOGIN_ERROR';
+
 const initialState = {
   isLoading: false,
   user: {},
@@ -60,6 +62,10 @@ export default(state = initialState, action) => {
     case USER_LOGOUT_FAILED:
       return {
         ...initialState, showLogoutError: true, errorMessage: action.payload,
+      };
+    case RESET_LOGIN_ERROR:
+      return {
+        ...state, showLoginError: false, errorMessage: '',
       };
     default:
       return state;

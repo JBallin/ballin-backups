@@ -1,4 +1,5 @@
 import { API_FETCH_FAILED } from '../reducers/api.reducers';
+import { RESET_LOGIN_ERROR } from '../reducers/auth.reducers';
 
 export const PASSWORD_MISMATCH = 'PASSWORD_MISMATCH';
 export const MISSING_FIELDS = 'MISSING_FIELDS';
@@ -25,6 +26,7 @@ export const resetInvalidGist = () => (dispatch) => {
 };
 
 export const validateSignup = formData => (dispatch) => {
+  dispatch({ type: RESET_LOGIN_ERROR });
   const { email, password, verifyPassword } = formData;
   if (email && !validateEmail(email)) {
     dispatch({ type: INVALID_EMAIL });
