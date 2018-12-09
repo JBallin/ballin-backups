@@ -1,6 +1,9 @@
 .category {
-  color: red;
+  color: #f89406; /* Orange */
   margin: .65em auto;
-  width: 50em;
+  max-width: 100%;
+  width: 70rem;
   display: block;
+  font-size: 2rem;
+  text-align: left;
 }

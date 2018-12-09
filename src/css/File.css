@@ -1,9 +1,11 @@
 h5 {
   text-align: center;
-  color: blue;
+  color: #68c5e0; /* Blue */
+  font-size: 1.5rem;
 }
 
 .gist {
-  width: 50em;
+  width: 66rem;
   margin: auto;
+  max-width: 100%;
 }
