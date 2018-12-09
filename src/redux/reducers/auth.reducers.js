@@ -55,7 +55,7 @@ export default(state = initialState, action) => {
       };
     case USER_LOGOUT_SUCCESS:
       return {
-        ...initialState, isLoggedOut: true,
+        ...initialState, tokenLoginFailure: state.tokenLoginFailure, isLoggedOut: true,
       };
     case USER_LOGOUT_FAILED:
       return {
