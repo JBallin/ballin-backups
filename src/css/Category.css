@@ -1,5 +1,5 @@
 .category {
-  color: #f89406; /* Orange */
+  color: var(--secondary);
   margin: .65em auto;
   max-width: 100%;
   width: 70rem;
