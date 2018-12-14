@@ -38,6 +38,11 @@ class Auth extends React.Component {
     return nextPathOptions.includes(prevPath) ? prevPath : '/login';
   }
 
+  getNextLoggedInPath = () => {
+    const { prevPath } = this.props;
+    return prevPath === '/profile/edit' ? '/profile/edit' : '/profile';
+  }
+
   render() {
     document.title = 'Auth | My Sweet Config';
     const {
@@ -47,7 +52,7 @@ class Auth extends React.Component {
     if (checkedAuth) {
       if (APIFetchFailure) return <Redirect to="/site-down" />;
       if (tokenLoginFailure) return <Redirect to={this.getNextPath()} />;
-      if (username) return <Redirect to="/profile" />;
+      if (username) return <Redirect to={this.getNextLoggedInPath()} />;
     }
     return <Spinner />;
   }
