@@ -10,6 +10,7 @@ import {
   Nav,
   NavItem,
 } from 'reactstrap';
+import '../css/TopNav.css';
 
 class TopNav extends React.Component {
   static propTypes = {
