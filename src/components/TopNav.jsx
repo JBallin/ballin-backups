@@ -35,7 +35,7 @@ class TopNav extends React.Component {
     const { isOpen } = this.state;
     const { username, title } = this.props;
 
-    const loginAndSignupLinks = (
+    const loggedOutNavLinks = (
       <Nav className="ml-auto" navbar>
         <NavItem>
           <NavLink to="/login" className="nav-link">Login</NavLink>
@@ -46,10 +46,16 @@ class TopNav extends React.Component {
       </Nav>
     );
 
-    const logoutLink = (
+    const loggedInNavLinks = (
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <NavLink to="/logout" className="nav-link" exact>Logout</NavLink>
+          <NavLink exact to="/profile" className="nav-link">Profile</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/profile/edit" className="nav-link">Settings</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/logout" className="nav-link">Logout</NavLink>
         </NavItem>
       </Nav>
     );
@@ -59,7 +65,7 @@ class TopNav extends React.Component {
         <NavbarBrand href="/">{title}</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={isOpen} navbar>
-          { username ? logoutLink : loginAndSignupLinks }
+          { username ? loggedInNavLinks : loggedOutNavLinks }
         </Collapse>
       </Navbar>
     );
