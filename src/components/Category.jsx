@@ -32,7 +32,7 @@ class Category extends Component {
         className="category"
         onClick={this.toggleDisplay}
       >
-        { category }
+        <span>{ category }</span>
       </button>
     );
     const embeds = (
