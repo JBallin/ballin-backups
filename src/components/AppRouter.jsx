@@ -16,9 +16,7 @@ import SiteDown from './SiteDown';
 
 class AppRouter extends React.Component {
   static propTypes = {
-    user: PropTypes.shape({
-      username: PropTypes.string,
-    }).isRequired,
+    username: PropTypes.string,
     tokenLoginFailure: PropTypes.bool.isRequired,
     APIFetchFailure: PropTypes.bool.isRequired,
     isLoggedOut: PropTypes.bool.isRequired,
@@ -26,6 +24,10 @@ class AppRouter extends React.Component {
       pathname: PropTypes.string.isRequired,
     }).isRequired,
   };
+
+  static defaultProps = {
+    username: '',
+  }
 
   state = {
     initialPath: '',
@@ -38,10 +40,10 @@ class AppRouter extends React.Component {
 
   render() {
     const {
-      user, tokenLoginFailure, APIFetchFailure, isLoggedOut,
+      username, tokenLoginFailure, APIFetchFailure, isLoggedOut,
     } = this.props;
     const { initialPath } = this.state;
-    const checkingAuth = !user.username && !tokenLoginFailure && !APIFetchFailure && !isLoggedOut;
+    const checkingAuth = !username && !tokenLoginFailure && !APIFetchFailure && !isLoggedOut;
     return (
       <Switch>
         <Route
@@ -63,7 +65,7 @@ class AppRouter extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
+  username: state.auth.user.username,
   tokenLoginFailure: state.auth.tokenLoginFailure,
   isLoggedOut: state.auth.isLoggedOut,
   APIFetchFailure: state.api.APIFetchFailure,

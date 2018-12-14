@@ -13,10 +13,12 @@ import {
 
 class TopNav extends React.Component {
   static propTypes = {
-    user: PropTypes.shape({
-      username: PropTypes.string,
-    }).isRequired,
+    username: PropTypes.string,
     title: PropTypes.string.isRequired,
+  }
+
+  static defaultProps = {
+    username: '',
   }
 
   state = {
@@ -31,7 +33,7 @@ class TopNav extends React.Component {
 
   render() {
     const { isOpen } = this.state;
-    const { user, title } = this.props;
+    const { username, title } = this.props;
 
     const loginAndSignupLinks = (
       <Nav className="ml-auto" navbar>
@@ -57,13 +59,13 @@ class TopNav extends React.Component {
         <NavbarBrand href="/">{title}</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={isOpen} navbar>
-          { user.username ? logoutLink : loginAndSignupLinks }
+          { username ? logoutLink : loginAndSignupLinks }
         </Collapse>
       </Navbar>
     );
   }
 }
 
-const mapStateToProps = state => ({ user: state.auth.user });
+const mapStateToProps = state => ({ username: state.auth.user.username });
 
 export default withRouter(connect(mapStateToProps, null)(TopNav));

@@ -10,13 +10,15 @@ import * as actions from '../redux/actions/auth.actions';
 
 class Login extends React.Component {
   static propTypes = {
+    username: PropTypes.string,
     showLoginError: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired,
     userLogin: PropTypes.func.isRequired,
-    user: PropTypes.shape({
-      username: PropTypes.string,
-    }).isRequired,
+  }
+
+  static defaultProps = {
+    username: '',
   }
 
   state = {
@@ -41,7 +43,7 @@ class Login extends React.Component {
     document.title = 'Login | My Sweet Config';
     const { email, password } = this.state;
     const {
-      showLoginError, errorMessage, isLoading, user,
+      showLoginError, errorMessage, isLoading, username,
     } = this.props;
     const emailField = (
       <FormGroup>
@@ -96,7 +98,7 @@ class Login extends React.Component {
       <Container className="main-wrapper">
         <Row style={{ marginTop: '15vh' }}>
           <Col lg={{ size: 6, offset: 3 }} style={colStyle}>
-            { user.username ? <Redirect push to="/profile" /> : loginForm }
+            { username ? <Redirect push to="/profile" /> : loginForm }
           </Col>
         </Row>
       </Container>
@@ -106,7 +108,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => ({
   showLoginError: state.auth.showLoginError,
-  user: state.auth.user,
+  username: state.auth.user.username,
   errorMessage: state.auth.errorMessage,
   isLoading: state.auth.isLoading,
 });

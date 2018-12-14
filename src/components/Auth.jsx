@@ -13,13 +13,15 @@ class Auth extends React.Component {
   }
 
   static propTypes = {
+    username: PropTypes.string,
     tokenLogin: PropTypes.func.isRequired,
-    user: PropTypes.shape({
-      username: PropTypes.string,
-    }).isRequired,
     tokenLoginFailure: PropTypes.bool.isRequired,
     APIFetchFailure: PropTypes.bool.isRequired,
     prevPath: PropTypes.string.isRequired,
+  }
+
+  static defaultProps = {
+    username: '',
   }
 
   componentDidMount = async () => {
@@ -39,20 +41,20 @@ class Auth extends React.Component {
   render() {
     document.title = 'Auth | My Sweet Config';
     const {
-      user, tokenLoginFailure, APIFetchFailure,
+      username, tokenLoginFailure, APIFetchFailure,
     } = this.props;
     const { checkedAuth } = this.state;
     if (checkedAuth) {
       if (APIFetchFailure) return <Redirect to="/site-down" />;
       if (tokenLoginFailure) return <Redirect to={this.getNextPath()} />;
-      if (user.username) return <Redirect to="/profile" />;
+      if (username) return <Redirect to="/profile" />;
     }
     return <Spinner />;
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
+  username: state.auth.user.username,
   isLoading: state.auth.isLoading,
   tokenLoginFailure: state.auth.tokenLoginFailure,
   errorMessage: state.auth.errorMessage,
