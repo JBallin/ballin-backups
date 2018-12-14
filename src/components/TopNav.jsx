@@ -63,10 +63,7 @@ class TopNav extends React.Component {
     );
   }
 }
-function mapStateToProps(state) {
-  return {
-    user: state.auth.user,
-  };
-}
 
-export default withRouter(connect(mapStateToProps)(TopNav));
+const mapStateToProps = state => ({ user: state.auth.user });
+
+export default withRouter(connect(mapStateToProps, null)(TopNav));
