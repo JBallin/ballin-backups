@@ -25,6 +25,7 @@ GitHub gists are awesome because they are private and store revision history, bu
 * Redux (state container)
 * Extensive (custom) form validation
 * Loading spinners
+* Bootstrap/reactstrap
 
 ##### Node Backend
 * Node.js
