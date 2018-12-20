@@ -22,10 +22,13 @@ GitHub gists are awesome because they are private and store revision history, bu
   - Built with [Create React App](https://github.com/facebook/create-react-app)
 * React Router
   - Document titles used for navigation history
+  - static.json file supports visiting links/routes directly
 * Redux (state container)
 * Extensive (custom) form validation
 * Loading spinners
 * Bootstrap/reactstrap
+* Dynamic navbar based on user being logged in, highlights the page currently on
+* Ability to edit/delete profile with custom alert boxes which require password confirmation
 
 ##### Node Backend
 * Node.js
@@ -34,9 +37,10 @@ GitHub gists are awesome because they are private and store revision history, bu
 * PostgreSQL
 * Advanced Authentication and Authorization
   - bcrypt (only storing hashed passwords)
-  - JSON Web Token (sent as cookies with every request)
+  - JSON Web Token (sent as cookies with every request, only thing stored client-side)
   - httpOnly & secure (https) cookies
   - CORS (Restricted API access)
+  - Front-end simulates sessions and refresh tokens by attempting to login using token stored in cookies
 * Extensive error handling
 * SuperTest/Mocha/Chai (extensive testing of routes/errors)
 * Model-View-Controller design pattern
