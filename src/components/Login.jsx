@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Swal from 'sweetalert2';
 import * as actions from '../redux/actions/auth.actions';
 
 class Login extends React.Component {
@@ -38,6 +39,15 @@ class Login extends React.Component {
     const { userLogin } = this.props;
     userLogin(this.state);
   }
+
+  alertSuccessAndRedirect = () => {
+    const { username } = this.props;
+    Swal({
+      type: 'success',
+      title: `<p>Hello <i>${username}</i>!</p>`,
+    });
+    return <Redirect push to="/profile" />;
+  };
 
   render() {
     document.title = 'Login | My Sweet Config';
@@ -98,7 +108,7 @@ class Login extends React.Component {
       <Container className="main-wrapper">
         <Row style={{ marginTop: '15vh' }}>
           <Col lg={{ size: 6, offset: 3 }} style={colStyle}>
-            { username ? <Redirect push to="/profile" /> : loginForm }
+            { username ? this.alertSuccessAndRedirect() : loginForm }
           </Col>
         </Row>
       </Container>
