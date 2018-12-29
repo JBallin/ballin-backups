@@ -16,7 +16,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import * as actions from '../redux/actions/signup.actions';
-import '../css/swal.css';
 
 import FormSpinner from './FormSpinner';
 
