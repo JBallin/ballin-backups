@@ -58,7 +58,6 @@ class Signup extends Component {
 
   formatUser = (user) => {
     const formatted = { ...user, gist_id: user.gistId };
-    formatted.gist_id = formatted.gistId;
     delete formatted.gistId;
     delete formatted.verifyPassword;
     return formatted;
