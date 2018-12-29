@@ -1,5 +1,6 @@
 import { API_FETCH_FAILED } from '../reducers/api.reducers';
 import { RESET_LOGIN_ERROR } from '../reducers/auth.reducers';
+import validateEmail from '../utils';
 
 export const PASSWORD_MISMATCH = 'PASSWORD_MISMATCH';
 export const MISSING_FIELDS = 'MISSING_FIELDS';
@@ -15,11 +16,6 @@ export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED';
 export const RESET_SIGNUP = 'RESET_SIGNUP';
 
 const API_URL = process.env.REACT_APP_API;
-
-const validateEmail = (email) => {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-};
 
 export const resetInvalidGist = () => (dispatch) => {
   dispatch({ type: RESET_INVALID_GIST_ID });
