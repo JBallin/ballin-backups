@@ -11,6 +11,7 @@ class Logout extends React.Component {
     userLogoutAction: PropTypes.func.isRequired,
     showLogoutError: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
+    isUserDeleted: PropTypes.bool.isRequired,
     username: PropTypes.string,
   };
 
@@ -21,20 +22,24 @@ class Logout extends React.Component {
   state = {
     attemptedLogout: false,
     username: '',
+    isUserDeleted: false,
   }
 
   async componentDidMount() {
-    const { userLogoutAction, username } = this.props;
+    const { userLogoutAction, username, isUserDeleted } = this.props;
     await userLogoutAction();
-    this.setState({ attemptedLogout: true, username });
+    this.setState({ attemptedLogout: true, username, isUserDeleted });
   }
 
   alertSuccessAndRedirect = () => {
     const { username } = this.state;
-    Swal({
-      type: 'success',
-    });
+    const { isUserDeleted } = this.state;
+    if (!isUserDeleted) {
+      Swal({
+        type: 'success',
         title: `Later ${username}...`,
+      });
+    }
     return <Redirect push to="/login" />;
   };
 
@@ -54,6 +59,7 @@ const mapStateToProps = state => ({
   showLogoutError: state.auth.showLogoutError,
   username: state.auth.user.username,
   errorMessage: state.auth.errorMessage,
+  isUserDeleted: state.userDelete.isUserDeleted,
 });
 
 const mapDispatchToProps = dispatch => ({
