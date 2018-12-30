@@ -23,7 +23,6 @@ const initialState = {
   gistId: '',
   email: '',
   username: '',
-  currentPassword: '',
   password: '',
   verifyPassword: '',
 };
