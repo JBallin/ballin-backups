@@ -90,7 +90,7 @@ class EditProfile extends React.Component {
 
   confirmUpdate = async () => {
     const {
-      validateUpdate, userUpdate, user, clearEditErrors,
+      validateUpdate, userUpdate, user, clearEditErrors, showDeleteError, showUpdateError,
     } = this.props;
     const updateRequest = {};
     Object.entries(this.state).forEach(([key, value]) => {
@@ -99,14 +99,13 @@ class EditProfile extends React.Component {
     const formattedUpdateReq = this.formatUser(updateRequest);
     const updatedFields = Object.keys(formattedUpdateReq);
     if (!updatedFields.length) {
-      clearEditErrors();
+      if (showDeleteError || showUpdateError) clearEditErrors();
       Swal({
         type: 'info',
         title: 'Please fill in the fields you would like to update.',
       });
     } else {
       await validateUpdate(this.state);
-      const { showUpdateError } = this.props;
       if (!showUpdateError) {
         Swal({
           type: 'warning',
@@ -133,8 +132,10 @@ class EditProfile extends React.Component {
   };
 
   confirmDelete = async () => {
-    const { user, userDelete, clearEditErrors } = this.props;
-    clearEditErrors();
+    const {
+      user, userDelete, clearEditErrors, showUpdateError, showDeleteError,
+    } = this.props;
+    if (showUpdateError || showDeleteError) clearEditErrors();
     Swal({
       type: 'warning',
       title: 'Are you sure you want to delete your profile?',
