@@ -13,6 +13,10 @@ export const USER_LOGOUT_PENDING = 'USER_LOGOUT_PENDING';
 export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
 export const USER_LOGOUT_FAILED = 'USER_LOGOUT_FAILED';
 
+export const USER_FETCH_PENDING = 'USER_FETCH_PENDING';
+export const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
+export const USER_FETCH_FAILED = 'USER_FETCH_FAILED';
+
 const API_URL = process.env.REACT_APP_API;
 
 export const userLogout = () => async (dispatch) => {
@@ -88,6 +92,33 @@ export const userLogin = ({ email, password }) => async (dispatch) => {
       dispatch({
         type: USER_LOGIN_FAILED,
         payload: err.message || err,
+      });
+    }
+  }
+};
+
+export const fetchUser = userId => async (dispatch) => {
+  try {
+    dispatch({ type: USER_FETCH_PENDING });
+    const res = await fetch(`${API_URL}/users/${userId}`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+    const userObj = await res.json();
+    if (userObj.error) throw userObj.error;
+    dispatch({
+      type: USER_FETCH_SUCCESS,
+      payload: userObj,
+    });
+  } catch (e) {
+    if (e instanceof TypeError) {
+      dispatch({
+        type: API_FETCH_FAILED,
+      });
+    } else {
+      dispatch({
+        type: USER_FETCH_FAILED,
+        payload: e.message || e,
       });
     }
   }
