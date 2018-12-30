@@ -105,6 +105,7 @@ class EditProfile extends React.Component {
       });
     } else {
       await validateUpdate(this.state);
+      const { showUpdateError } = this.props; // eslint-disable-line no-shadow
       if (!showUpdateError) {
         Swal({
           type: 'warning',
