@@ -1,9 +1,11 @@
 h5 {
   text-align: center;
-  color: green;
+  color: var(--warning);
+  font-size: 1em;
 }
 
 .gist {
-  width: 500px;
+  width: 66rem;
   margin: auto;
+  max-width: 100%;
 }
