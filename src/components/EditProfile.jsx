@@ -336,7 +336,7 @@ class EditProfile extends React.Component {
     const updateSuccess = () => {
       Swal({
         type: 'success',
-        title: `<p>You've successfully updated your profile <i>${username}</i>!</p>`,
+        title: `You've successfully updated your profile ${username}!`,
       })
         .then(() => {
           resetUpdateForm();
@@ -348,7 +348,7 @@ class EditProfile extends React.Component {
     const deleteSuccess = () => {
       Swal({
         type: 'success',
-        title: `<p>Goodbye <i>${username}</i>, thanks for checking this out!`,
+        title: `Goodbye for now ${user.username}. May your config always be sweet and your bugs squashed.`,
       });
       return <Redirect push to="/logout" />;
     };

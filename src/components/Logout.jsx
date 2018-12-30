@@ -33,8 +33,8 @@ class Logout extends React.Component {
     const { username } = this.state;
     Swal({
       type: 'success',
-      title: `<p>Bye <i>${username}</i>!</p>`,
     });
+        title: `Later ${username}...`,
     return <Redirect push to="/login" />;
   };
 

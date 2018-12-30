@@ -44,7 +44,7 @@ class Login extends React.Component {
     const { username } = this.props;
     Swal({
       type: 'success',
-      title: `<p>Hello <i>${username}</i>!</p>`,
+      title: `Greetings ${username}!`,
     });
     return <Redirect push to="/profile" />;
   };
