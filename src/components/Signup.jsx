@@ -226,7 +226,7 @@ class Signup extends Component {
     const alertSuccessAndRedirect = () => {
       Swal({
         type: 'success',
-        title: `<p>Welcome <i>${username}</i>!</p>`,
+        title: `Welcome ${username}!`,
         confirmButtonText: 'Login',
       })
         .then(resetSignup);
