@@ -41,6 +41,7 @@ class Signup extends Component {
       password: '',
       verifyPassword: '',
     },
+    redirect: false,
   }
 
   handleChange = async (e) => {
@@ -80,6 +81,7 @@ class Signup extends Component {
 
   render() {
     document.title = 'Signup | My Sweet Config';
+    const { formData, redirect } = this.state;
     const {
       gistId, email, username, password, verifyPassword,
     } = formData;
@@ -225,19 +227,22 @@ class Signup extends Component {
         </Col>
       </Row>
     );
-    const alertSuccessAndRedirect = () => {
+    const alertSuccess = () => {
       Swal({
         type: 'success',
         title: `Welcome ${username}!`,
         confirmButtonText: 'Login',
       })
-        .then(resetSignup);
-      return <Redirect push to="/login" />;
+        .then(() => {
+          resetSignup();
+          this.setState({ redirect: true });
+        });
     };
 
     return (
       <Container className="main-wrapper">
-        { newUser ? alertSuccessAndRedirect() : styledForm }
+        { redirect && <Redirect push to="/login" /> }
+        { newUser ? alertSuccess() : styledForm }
       </Container>
     );
   }
