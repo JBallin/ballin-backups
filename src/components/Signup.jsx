@@ -122,7 +122,7 @@ class Signup extends Component {
         </Label>
         <Input
           invalid={
-            showSignupError && !username
+            (showSignupError && !username) || errorMessage.includes('username')
           }
           valid={
             showSignupError && !!username
