@@ -182,12 +182,8 @@ class EditProfile extends React.Component {
           <Link to="/signup/help" className="ml-1">(Help)</Link>
         </Label>
         <Input
-          invalid={
-            showUpdateError && (!gistId || invalidGist)
-          }
-          valid={
-            showUpdateError && !!gistId && !invalidGist
-          }
+          invalid={showUpdateError && invalidGist}
+          valid={showUpdateError && !!gistId && !invalidGist}
           type="text"
           name="gistId"
           id="gistId"
@@ -203,12 +199,8 @@ class EditProfile extends React.Component {
           Username
         </Label>
         <Input
-          invalid={
-            showUpdateError && !username
-          }
-          valid={
-            showUpdateError && !!username
-          }
+          valid={showUpdateError && !!username}
+          invalid={updateErrorMessage.includes('username')}
           type="text"
           name="username"
           id="username"
@@ -225,12 +217,8 @@ class EditProfile extends React.Component {
           Email
         </Label>
         <Input
-          invalid={
-            showUpdateError && (!email || invalidEmail)
-          }
-          valid={
-            showUpdateError && (!!email && !invalidEmail)
-          }
+          invalid={showUpdateError && invalidEmail}
+          valid={showUpdateError && (!!email && !invalidEmail)}
           name="email"
           id="email"
           value={email}
@@ -246,12 +234,8 @@ class EditProfile extends React.Component {
           New Password
         </Label>
         <Input
-          invalid={
-            showUpdateError && !password
-          }
-          valid={
-            showUpdateError && !!password
-          }
+          invalid={showUpdateError && !password && verifyPassword}
+          valid={showUpdateError && !!password}
           type="password"
           name="password"
           id="password"
@@ -267,12 +251,8 @@ class EditProfile extends React.Component {
           Verify New Password
         </Label>
         <Input
-          invalid={
-            showUpdateError && (!verifyPassword || password !== verifyPassword)
-          }
-          valid={
-            showUpdateError && (!!verifyPassword && password === verifyPassword)
-          }
+          invalid={showUpdateError && password !== verifyPassword}
+          valid={showUpdateError && (!!verifyPassword && password === verifyPassword)}
           type="password"
           name="verifyPassword"
           id="verifyPassword"
