@@ -5,6 +5,7 @@ import AppRouter from './components/AppRouter';
 import TopNav from './components/TopNav';
 
 import './css/swal.css';
+import './css/forms.css';
 
 const App = () => (
   <div>
