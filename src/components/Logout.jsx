@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Swal from 'sweetalert2';
 import { userLogout } from '../redux/actions/auth.actions';
 
 class Logout extends React.Component {
@@ -11,37 +10,17 @@ class Logout extends React.Component {
     userLogoutAction: PropTypes.func.isRequired,
     showLogoutError: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
-    isUserDeleted: PropTypes.bool.isRequired,
-    username: PropTypes.string,
   };
-
-  static defaultProps = {
-    username: '',
-  }
 
   state = {
     attemptedLogout: false,
-    username: '',
-    isUserDeleted: false,
   }
 
   async componentDidMount() {
-    const { userLogoutAction, username, isUserDeleted } = this.props;
+    const { userLogoutAction } = this.props;
     await userLogoutAction();
-    this.setState({ attemptedLogout: true, username, isUserDeleted });
+    this.setState({ attemptedLogout: true });
   }
-
-  alertSuccessAndRedirect = () => {
-    const { username } = this.state;
-    const { isUserDeleted } = this.state;
-    if (!isUserDeleted) {
-      Swal({
-        type: 'success',
-        title: `Later ${username}...`,
-      });
-    }
-    return <Redirect push to="/login" />;
-  };
 
   render() {
     document.title = 'Logout | My Sweet Config';
@@ -49,7 +28,7 @@ class Logout extends React.Component {
     const { showLogoutError, errorMessage } = this.props;
     if (attemptedLogout) {
       if (showLogoutError) return <h1>{errorMessage}</h1>;
-      return this.alertSuccessAndRedirect();
+      return <Redirect push to="/login" />;
     }
     return null;
   }
