@@ -34,11 +34,13 @@ class Signup extends Component {
   }
 
   state = {
-    gistId: '',
-    email: '',
-    username: '',
-    password: '',
-    verifyPassword: '',
+    formData: {
+      gistId: '',
+      email: '',
+      username: '',
+      password: '',
+      verifyPassword: '',
+    },
   }
 
   handleChange = async (e) => {
@@ -49,9 +51,10 @@ class Signup extends Component {
     let { value } = e.target;
     const isPassword = name.toLowerCase().includes('password');
     if (!isPassword) value = value.toLowerCase();
-    await this.setState({ [name]: value });
+    await this.setState(prevState => ({ formData: { ...prevState.formData, [name]: value } }));
     if (showSignupError) {
-      validateSignup(this.state);
+      const { formData } = this.state;
+      validateSignup(formData);
       resetInvalidGist();
     }
   }
@@ -65,13 +68,12 @@ class Signup extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const {
-      validateSignup, userSignup,
-    } = this.props;
-    await validateSignup(this.state);
+    const { validateSignup, userSignup } = this.props;
+    const { formData } = this.state;
+    await validateSignup(formData);
     const { showSignupError } = this.props;
     if (!showSignupError) {
-      const newUser = this.formatUser(this.state);
+      const newUser = this.formatUser(formData);
       userSignup(newUser);
     }
   }
@@ -80,7 +82,7 @@ class Signup extends Component {
     document.title = 'Signup | My Sweet Config';
     const {
       gistId, email, username, password, verifyPassword,
-    } = this.state;
+    } = formData;
     const {
       isLoading, showSignupError, errorMessage, invalidEmail, invalidGist, newUser, resetSignup,
     } = this.props;
