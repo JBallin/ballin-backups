@@ -100,12 +100,8 @@ class Signup extends Component {
           <Link to="/signup/help" className="ml-1">(Help)</Link>
         </Label>
         <Input
-          invalid={
-            showSignupError && (!gistId || invalidGist)
-          }
-          valid={
-            showSignupError && !!gistId && !invalidGist
-          }
+          invalid={showSignupError && (!gistId || invalidGist)}
+          valid={showSignupError && !!gistId && !invalidGist}
           autoFocus
           type="text"
           name="gistId"
@@ -121,12 +117,8 @@ class Signup extends Component {
           Username
         </Label>
         <Input
-          invalid={
-            (showSignupError && !username) || errorMessage.includes('username')
-          }
-          valid={
-            showSignupError && !!username
-          }
+          invalid={(showSignupError && !username) || errorMessage.includes('username')}
+          valid={showSignupError && !!username}
           type="text"
           name="username"
           id="username"
@@ -142,12 +134,8 @@ class Signup extends Component {
           Email
         </Label>
         <Input
-          invalid={
-            showSignupError && (!email || invalidEmail)
-          }
-          valid={
-            showSignupError && (!!email && !invalidEmail)
-          }
+          invalid={showSignupError && (!email || invalidEmail)}
+          valid={showSignupError && (!!email && !invalidEmail)}
           name="email"
           id="email"
           value={email}
@@ -162,12 +150,8 @@ class Signup extends Component {
           Password
         </Label>
         <Input
-          invalid={
-            showSignupError && !password
-          }
-          valid={
-            showSignupError && !!password
-          }
+          invalid={showSignupError && !password}
+          valid={showSignupError && !!password}
           type="password"
           name="password"
           id="password"
@@ -183,12 +167,8 @@ class Signup extends Component {
           Verify Password
         </Label>
         <Input
-          invalid={
-            showSignupError && (!verifyPassword || password !== verifyPassword)
-          }
-          valid={
-            showSignupError && (!!verifyPassword && password === verifyPassword)
-          }
+          invalid={showSignupError && (!verifyPassword || password !== verifyPassword)}
+          valid={showSignupError && (!!verifyPassword && password === verifyPassword)}
           type="password"
           name="verifyPassword"
           id="verifyPassword"
