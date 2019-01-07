@@ -60,7 +60,6 @@ class Login extends React.Component {
         <Label for="email">Email</Label>
         <Input
           autoFocus
-          type="email"
           name="email"
           id="email"
           value={email}

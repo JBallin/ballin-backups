@@ -1,5 +1,6 @@
 import { API_FETCH_FAILED } from '../reducers/api.reducers';
 import { RESET_SIGNUP } from './signup.actions';
+import validateEmail from '../utils';
 
 export const TOKEN_LOGIN_PENDING = 'TOKEN_LOGIN_PENDING';
 export const TOKEN_LOGIN_SUCCESS = 'TOKEN_LOGIN_SUCCESS';
@@ -16,6 +17,8 @@ export const USER_LOGOUT_FAILED = 'USER_LOGOUT_FAILED';
 export const USER_FETCH_PENDING = 'USER_FETCH_PENDING';
 export const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
 export const USER_FETCH_FAILED = 'USER_FETCH_FAILED';
+
+export const INVALID_LOGIN_EMAIL = 'INVALID_LOGIN_EMAIL';
 
 const API_URL = process.env.REACT_APP_API;
 
@@ -69,30 +72,34 @@ export const tokenLogin = () => async (dispatch) => {
 
 export const userLogin = ({ email, password }) => async (dispatch) => {
   dispatch({ type: RESET_SIGNUP });
-  try {
-    dispatch({ type: USER_LOGIN_PENDING });
-    const response = await fetch(`${API_URL}/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-      credentials: 'include',
-    });
-    const userObject = await response.json();
-    if (userObject.error) throw userObject.error;
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: userObject,
-    });
-  } catch (err) {
-    if (err instanceof TypeError) {
-      dispatch({
-        type: API_FETCH_FAILED,
+  if (!validateEmail(email)) {
+    dispatch({ type: INVALID_LOGIN_EMAIL });
+  } else {
+    try {
+      dispatch({ type: USER_LOGIN_PENDING });
+      const response = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include',
       });
-    } else {
+      const userObject = await response.json();
+      if (userObject.error) throw userObject.error;
       dispatch({
-        type: USER_LOGIN_FAILED,
-        payload: err.message || err,
+        type: USER_LOGIN_SUCCESS,
+        payload: userObject,
       });
+    } catch (err) {
+      if (err instanceof TypeError) {
+        dispatch({
+          type: API_FETCH_FAILED,
+        });
+      } else {
+        dispatch({
+          type: USER_LOGIN_FAILED,
+          payload: err.message || err,
+        });
+      }
     }
   }
 };

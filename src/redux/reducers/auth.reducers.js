@@ -11,6 +11,7 @@ import {
   USER_FETCH_PENDING,
   USER_FETCH_SUCCESS,
   USER_FETCH_FAILED,
+  INVALID_LOGIN_EMAIL,
 } from '../actions/auth.actions';
 
 export const RESET_LOGIN_ERROR = 'RESET_LOGIN_ERROR';
@@ -28,6 +29,10 @@ const initialState = {
 
 export default(state = initialState, action) => {
   switch (action.type) {
+    case INVALID_LOGIN_EMAIL:
+      return {
+        ...state, isLoading: false, showLoginError: true, errorMessage: 'Invalid email. Please try again.',
+      };
     case TOKEN_LOGIN_PENDING:
       return {
         ...state, isLoading: true,
