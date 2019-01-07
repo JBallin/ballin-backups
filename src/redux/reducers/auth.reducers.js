@@ -55,10 +55,7 @@ export default(state = initialState, action) => {
       };
     case USER_LOGIN_FAILED:
       return {
-        ...state,
-        isLoading: false,
-        showLoginError: true,
-        errorMessage: action.payload,
+        ...state, isLoading: false, showLoginError: true, errorMessage: action.payload,
       };
     case USER_LOGOUT_PENDING:
       return {
