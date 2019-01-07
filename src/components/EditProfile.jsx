@@ -26,6 +26,7 @@ const initialState = {
   password: '',
   verifyPassword: '',
 };
+const invalidCurrPwdErr = 'Invalid current password';
 
 class EditProfile extends React.Component {
   static propTypes = {
@@ -121,12 +122,18 @@ class EditProfile extends React.Component {
           inputValidator: value => !value && 'missing password',
           confirmButtonText: 'Update Me!',
           showCancelButton: true,
-        })
-          .then(({ dismiss, value: currentPassword }) => {
-            if (!dismiss) {
-              userUpdate(user.id, { currentPassword, ...formattedUpdateReq });
-            }
-          });
+          showLoaderOnConfirm: true,
+          preConfirm: currentPassword => (
+            userUpdate(user.id, { currentPassword, ...formattedUpdateReq })
+              .then(() => {
+                const { updateErrorMessage } = this.props;
+                if (updateErrorMessage === invalidCurrPwdErr) {
+                  Swal.showValidationMessage(updateErrorMessage);
+                }
+              })
+          ),
+          allowOutsideClick: () => !Swal.isLoading(),
+        });
       }
     }
   };
@@ -149,10 +156,18 @@ class EditProfile extends React.Component {
       inputValidator: value => !value && 'missing password',
       confirmButtonText: 'Delete Me!',
       showCancelButton: true,
-    })
-      .then(({ dismiss, value: currentPassword }) => {
-        if (!dismiss) userDelete(user.id, currentPassword);
-      });
+      showLoaderOnConfirm: true,
+      preConfirm: currentPassword => (
+        userDelete(user.id, currentPassword)
+          .then(() => {
+            const { deleteErrorMessage } = this.props;
+            if (deleteErrorMessage === invalidCurrPwdErr) {
+              Swal.showValidationMessage(deleteErrorMessage);
+            }
+          })
+      ),
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
   };
 
   handleSubmit = (e) => {
@@ -300,8 +315,8 @@ class EditProfile extends React.Component {
         { emailField }
         { passwordField }
         { verifyPasswordField }
-        { showUpdateError && updateErrorAlert }
-        { showDeleteError && deleteErrorAlert }
+        { showUpdateError && updateErrorMessage !== invalidCurrPwdErr && updateErrorAlert }
+        { showDeleteError && deleteErrorMessage !== invalidCurrPwdErr && deleteErrorAlert }
         { updateButton }
         { deleteButton }
         { hiddenSubmitButton }
