@@ -1,8 +1,10 @@
 # My Sweet Config
 
 *Visualize your dev environment*
+
+Deployed: [sweet-config.herokuapp.com][2]
 <br>
-[sweet-config.herokuapp.com][2]
+Backend: [sweet-api][7]
 
 ## Description
 
@@ -80,7 +82,7 @@ $ yarn install
 $ yarn start
 ```
 
-Note: [API](https://github.com/JBallin/sweet-api) must be running as well.
+Note: [API][7] must be running as well.
 
 ## Testing
 
@@ -98,3 +100,4 @@ All articles linked were written by [me][6].
 [4]: https://hackernoon.com/properly-deploy-your-react-app-to-heroku-c1a13f5f978c
 [5]: https://medium.com/@PrintSupWorld/how-to-deploy-a-react-router-app-to-heroku-d59e4f194ec8
 [6]: https://medium.com/@PrintSupWorld
+[7]: https://github.com/JBallin/sweet-api
