@@ -234,7 +234,7 @@ class EditProfile extends React.Component {
           New Password
         </Label>
         <Input
-          invalid={showUpdateError && !password && verifyPassword}
+          invalid={showUpdateError && !password && !!verifyPassword}
           valid={showUpdateError && !!password}
           type="password"
           name="password"
