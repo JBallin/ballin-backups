@@ -72,6 +72,14 @@ GitHub gists are awesome because they are private and store revision history, bu
 * View revision history
 * Edit, delete, and add files
 
+## Screen Shots
+
+![login](/screenshots/0_login.png?raw=true "Login")
+![signup](/screenshots/1_signup.png?raw=true "Signup")
+![app](/screenshots/2_app.png?raw=true "App")
+![update username](/screenshots/3_update.png?raw=true "Update Username")
+![confirm update](/screenshots/4_update-confirm.png?raw=true "Confirm Update")
+
 ## Demo Login
 email: `demo@gmail(.com)` password: `hello`
 
