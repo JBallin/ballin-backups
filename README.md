@@ -73,7 +73,6 @@ GitHub gists are awesome because they are private and store revision history, bu
 * Edit, delete, and add files
 
 ## Screen Shots
-
 ![login](/screenshots/0_login.png?raw=true "Login")
 ![signup](/screenshots/1_signup.png?raw=true "Signup")
 ![app](/screenshots/2_app.png?raw=true "App")
@@ -84,7 +83,6 @@ GitHub gists are awesome because they are private and store revision history, bu
 email: `demo@gmail(.com)` password: `hello`
 
 ## Usage
-
 ```shell
 $ yarn install
 $ yarn start
@@ -93,13 +91,11 @@ $ yarn start
 Note: [API][7] must be running as well.
 
 ## Testing
-
 ```shell
 $ yarn test
 ```
 
 ### Footnotes
-
 All articles linked were written by [me][6].
 
 [1]: https://github.com/JBallin/ballin-scripts
