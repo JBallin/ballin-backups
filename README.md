@@ -5,6 +5,8 @@
 Deployed: [sweet-config.herokuapp.com][2]
 <br>
 Backend: [sweet-api][7]
+<br>
+Demo: [youtu.be/Zn94dAHTPyo][8]
 
 ## Description
 
@@ -106,3 +108,4 @@ All articles linked were written by [me][6].
 [5]: https://medium.com/@PrintSupWorld/how-to-deploy-a-react-router-app-to-heroku-d59e4f194ec8
 [6]: https://medium.com/@PrintSupWorld
 [7]: https://github.com/JBallin/sweet-api
+[8]: https://youtu.be/Zn94dAHTPyo
