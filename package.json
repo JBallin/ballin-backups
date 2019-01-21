@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootswatch": "^4.1.3",
+    "bowser": "^2.0.0",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
