@@ -9,7 +9,10 @@ import Category from './Category';
 
 const API = process.env.REACT_APP_API;
 const browser = Bowser.getParser(window.navigator.userAgent).getBrowserName();
-const safariError = 'Safari doesn\'t support 3rd-party cookies, which is an issue because this app uses a separate domain for the API. You can either disable "Prevent cross-site tracking" in Settings/Privacy or use Chrome.';
+const buildTokenError = (issueBrowser, fixSuggestion) => (
+  `${issueBrowser} doesn't support 3rd-party cookies, which is an issue because this app uses a separate domain for the API. You can ${fixSuggestion}.`
+);
+const safariTokenError = buildTokenError('Safari', 'either disable "Prevent cross-site tracking" in Settings/Privacy or use Chrome');
 
 class Profile extends Component {
   static propTypes = {
@@ -54,12 +57,18 @@ class Profile extends Component {
         gistId={gistId}
       />
     ));
-    const errorMessage = () => (
-      <div>
-        <h3>{ `Error: ${error}` }</h3>
-        <p>{ error.includes('token') && browser === 'Safari' ? safariError : '' }</p>
-      </div>
-    );
+    const errorMessage = () => {
+      let tokenMessage = '';
+      if (error.includes('token')) {
+        if (browser === 'Safari') tokenMessage = safariTokenError;
+      }
+      return (
+        <div>
+          <h3>{ `Error: ${error}` }</h3>
+          <p>{ tokenMessage }</p>
+        </div>
+      );
+    };
     const displayCategories = () => {
       if (error) return errorMessage();
       if (isLoading) return <PageSpinner />;
