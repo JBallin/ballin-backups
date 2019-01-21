@@ -54,14 +54,14 @@ class Profile extends Component {
         gistId={gistId}
       />
     ));
-    const errorMessage = (
+    const errorMessage = () => (
       <div>
         <h3>{ `Error: ${error}` }</h3>
         <p>{ error.includes('token') && browser === 'Safari' ? safariError : '' }</p>
       </div>
     );
     const displayCategories = () => {
-      if (error) return errorMessage;
+      if (error) return errorMessage();
       if (isLoading) return <PageSpinner />;
       return fileCategories;
     };
