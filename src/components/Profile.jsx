@@ -9,10 +9,12 @@ import Category from './Category';
 
 const API = process.env.REACT_APP_API;
 const browser = Bowser.getParser(window.navigator.userAgent).getBrowserName();
+const platform = Bowser.getParser(window.navigator.userAgent).getPlatformType();
 const buildTokenError = (issueBrowser, fixSuggestion) => (
   `${issueBrowser} doesn't support 3rd-party cookies, which is an issue because this app uses a separate domain for the API. You can ${fixSuggestion}.`
 );
 const safariTokenError = buildTokenError('Safari', 'either disable "Prevent cross-site tracking" in Settings/Privacy or use Chrome');
+const chromeMobileTokenError = buildTokenError('Chrome on mobile', 'either try a different mobile browser or use Chrome on desktop');
 
 class Profile extends Component {
   static propTypes = {
@@ -61,6 +63,7 @@ class Profile extends Component {
       let tokenMessage = '';
       if (error.includes('token')) {
         if (browser === 'Safari') tokenMessage = safariTokenError;
+        else if (browser === 'Chrome' && platform === 'mobile') tokenMessage = chromeMobileTokenError;
       }
       return (
         <div>
