@@ -1,4 +1,4 @@
-import * as Bowser from 'bowser';
+import Bowser from 'bowser';
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
