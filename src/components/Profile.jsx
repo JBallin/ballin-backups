@@ -9,7 +9,12 @@ import Category from './Category';
 
 const API = process.env.REACT_APP_API;
 const browser = Bowser.getParser(window.navigator.userAgent).getBrowserName();
-const safariError = 'Safari doesn\'t support 3rd-party cookies, which is an issue because this app uses a separate domain for the API. You can either disable "Prevent cross-site tracking" in Settings/Privacy or use Chrome.';
+const platform = Bowser.getParser(window.navigator.userAgent).getPlatformType();
+const buildTokenError = (issueBrowser, fixSuggestion) => (
+  `${issueBrowser} doesn't support 3rd-party cookies, which is an issue because this app uses a separate domain for the API. You can ${fixSuggestion}.`
+);
+const safariTokenError = buildTokenError('Safari', 'either disable "Prevent cross-site tracking" in Settings/Privacy or use Chrome on desktop');
+const chromeMobileTokenError = buildTokenError('Chrome on mobile', 'either try a different mobile browser or use Chrome on desktop');
 
 class Profile extends Component {
   static propTypes = {
@@ -54,12 +59,19 @@ class Profile extends Component {
         gistId={gistId}
       />
     ));
-    const errorMessage = () => (
-      <div>
-        <h3>{ `Error: ${error}` }</h3>
-        <p>{ error.includes('token') && browser === 'Safari' ? safariError : '' }</p>
-      </div>
-    );
+    const errorMessage = () => {
+      let tokenMessage = '';
+      if (error.includes('token')) {
+        if (browser === 'Safari') tokenMessage = safariTokenError;
+        else if (browser === 'Chrome' && platform === 'mobile') tokenMessage = chromeMobileTokenError;
+      }
+      return (
+        <div>
+          <h3>{ `Error: ${error}` }</h3>
+          <p>{ tokenMessage }</p>
+        </div>
+      );
+    };
     const displayCategories = () => {
       if (error) return errorMessage();
       if (isLoading) return <PageSpinner />;
