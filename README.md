@@ -19,14 +19,14 @@ GitHub gists are awesome because they are private and store revision history, bu
 ##### Solution
 [My Sweet Config][2], named after the pride (sweet) we take in our (my) configs, allows you to view your files by category in a clean interface designed specifically for [ballin scripts][1].
 
-## Desktop Screen Shots
+## Desktop Screenshots
 ![login](/screenshots/desktop/0_login.png?raw=true "Login")
 ![signup](/screenshots/desktop/1_signup.png?raw=true "Signup")
 ![app](/screenshots/desktop/2_app.png?raw=true "App")
 ![update username](/screenshots/desktop/3_update.png?raw=true "Update Username")
 ![confirm update](/screenshots/desktop/4_update-confirm.png?raw=true "Confirm Update")
 
-## Mobile Screen Shots
+## Mobile Screenshots
 ![login](/screenshots/mobile/m_0_login.png?raw=true "Login")
 ![signup](/screenshots/mobile/m_1_signup.png?raw=true "Signup")
 ![app](/screenshots/mobile/m_2_app.png?raw=true "App")
