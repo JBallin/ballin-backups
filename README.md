@@ -2,7 +2,7 @@
 
 *Visualize your dev environment*
 
-Deployed: [sweet-config.herokuapp.com][2]
+Deployed: [sweet-config.herokuapp.com][2] - demo@gmail•com, hello
 <br>
 Backend: [sweet-api][7]
 <br>
@@ -48,9 +48,9 @@ GitHub gists are awesome because they are private and store revision history, bu
 * Bootstrap/reactstrap
 * Dynamic navbar based on user being logged in, highlights the page currently on
 * Ability to edit/delete profile with custom alert boxes which require password confirmation
+* Proper auto-complete configuration to support browser/password manager auto-fill
 
-##### Node Backend
-* Node.js
+##### Node.js Backend
 * Express.js (Node.js Web Framework)
 * Knex.js (SQL Query Builder)
 * PostgreSQL
@@ -60,8 +60,9 @@ GitHub gists are awesome because they are private and store revision history, bu
   - httpOnly & secure (https) cookies
   - CORS (Restricted API access)
   - Front-end simulates sessions and refresh tokens by attempting to login using token stored in cookies
-* Extensive error handling
-* SuperTest/Mocha/Chai (extensive testing of routes/errors)
+  - Password protected user edits/deletion
+* [32 custom errors](https://github.com/JBallin/sweet-api#32-custom-errors)
+* [66 integration tests](https://github.com/JBallin/sweet-api#66-integration-tests) (SuperTest/Mocha/Chai)
 * Model-View-Controller design pattern
 * ESLint (Airbnb style guide)
   - Also used on frontend, which required [custom configuration][3] to work with Create React App
@@ -73,7 +74,7 @@ GitHub gists are awesome because they are private and store revision history, bu
 * Travis CI (automated testing)
 * Heroku
   - Pipelines and review/staging apps
-  - Auto-deploy post CI success
+  - Auto-deploy post CI success ([automatic db setup](https://github.com/JBallin/sweet-api/blob/master/app.json))
   - [Production build][4] of React
   - Proper [React Router configuration][5]
 
