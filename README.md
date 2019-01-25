@@ -49,8 +49,7 @@ GitHub gists are awesome because they are private and store revision history, bu
 * Dynamic navbar based on user being logged in, highlights the page currently on
 * Ability to edit/delete profile with custom alert boxes which require password confirmation
 
-##### Node Backend
-* Node.js
+##### Node.js Backend
 * Express.js (Node.js Web Framework)
 * Knex.js (SQL Query Builder)
 * PostgreSQL
