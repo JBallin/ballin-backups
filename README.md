@@ -60,6 +60,7 @@ GitHub gists are awesome because they are private and store revision history, bu
   - httpOnly & secure (https) cookies
   - CORS (Restricted API access)
   - Front-end simulates sessions and refresh tokens by attempting to login using token stored in cookies
+  - Password protected user edits/deletion
 * [32 custom errors](https://github.com/JBallin/sweet-api#32-custom-errors)
 * [66 integration tests](https://github.com/JBallin/sweet-api#66-integration-tests) (SuperTest/Mocha/Chai)
 * Model-View-Controller design pattern
