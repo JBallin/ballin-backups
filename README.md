@@ -73,7 +73,7 @@ GitHub gists are awesome because they are private and store revision history, bu
 * Travis CI (automated testing)
 * Heroku
   - Pipelines and review/staging apps
-  - Auto-deploy post CI success
+  - Auto-deploy post CI success ([automatic db setup](https://github.com/JBallin/sweet-api/blob/master/app.json))
   - [Production build][4] of React
   - Proper [React Router configuration][5]
 
