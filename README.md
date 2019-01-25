@@ -2,7 +2,7 @@
 
 *Visualize your dev environment*
 
-Deployed: [sweet-config.herokuapp.com][2]
+Deployed: [sweet-config.herokuapp.com][2] - demo@gmail•com, hello
 <br>
 Backend: [sweet-api][7]
 <br>
