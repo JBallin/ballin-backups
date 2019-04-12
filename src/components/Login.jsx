@@ -9,6 +9,11 @@ import { bindActionCreators } from 'redux';
 import Swal from 'sweetalert2';
 import * as actions from '../redux/actions/auth.actions';
 
+const demoCredentials = {
+  email: 'demo@gmail.com',
+  password: 'hello',
+};
+
 class Login extends React.Component {
   static propTypes = {
     username: PropTypes.string,
@@ -25,6 +30,11 @@ class Login extends React.Component {
   state = {
     email: '',
     password: '',
+  }
+
+  handleDemo = () => {
+    const { userLogin } = this.props;
+    userLogin(demoCredentials);
   }
 
   handleChange = (e) => {
@@ -88,6 +98,11 @@ class Login extends React.Component {
       </Button>
     );
     const signupLink = <Link to="/signup">Not a member?</Link>;
+    const demoButton = (
+      <Button color="primary" className="float-right" disabled={isLoading} onClick={this.handleDemo}>
+        Demo
+      </Button>
+    );
     const loginForm = (
       <Form onSubmit={this.handleSubmit}>
         { emailField }
@@ -95,6 +110,7 @@ class Login extends React.Component {
         { showLoginError && errorAlert }
         { loginButton }
         { signupLink }
+        {demoButton}
       </Form>
     );
     const colStyle = ({
