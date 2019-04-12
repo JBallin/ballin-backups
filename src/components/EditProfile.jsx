@@ -140,16 +140,20 @@ class EditProfile extends React.Component {
               })
           ),
           allowOutsideClick: () => !Swal.isLoading(),
-        }).then(() => {
-          Swal({
-            type: 'success',
-            title: `You've successfully updated your profile ${username || user.username}!`,
-          })
-            .then(() => {
-              resetUpdateForm();
-              fetchUser(user.id);
-              this.setState(initialState);
-            });
+        }).then(({ dismiss }) => {
+          if (!dismiss) {
+            Swal({
+              type: 'success',
+              title: `You've successfully updated your profile ${username || user.username}!`,
+            })
+              .then(() => {
+                resetUpdateForm();
+                fetchUser(user.id);
+                this.setState(initialState);
+              });
+          } else {
+            this.setState({ isPending: false });
+          }
         });
       }
     }
@@ -185,13 +189,17 @@ class EditProfile extends React.Component {
           })
       ),
       allowOutsideClick: () => !Swal.isLoading(),
-    }).then(() => {
-      Swal({
-        type: 'success',
-        title: `Goodbye for now ${user.username}. May your config always be sweet and your bugs squashed.`,
-      }).then(() => {
-        this.setState(initialState);
-      });
+    }).then(({ dismiss }) => {
+      if (!dismiss) {
+        Swal({
+          type: 'success',
+          title: `Goodbye for now ${user.username}. May your config always be sweet and your bugs squashed.`,
+        }).then(() => {
+          this.setState(initialState);
+        });
+      } else {
+        this.setState({ isPending: false });
+      }
     });
   };
 
