@@ -9,6 +9,11 @@ import { bindActionCreators } from 'redux';
 import Swal from 'sweetalert2';
 import * as actions from '../redux/actions/auth.actions';
 
+const demoCredentials = {
+  email: 'demo@gmail.com',
+  password: 'hello',
+};
+
 class Login extends React.Component {
   static propTypes = {
     username: PropTypes.string,
@@ -25,6 +30,11 @@ class Login extends React.Component {
   state = {
     email: '',
     password: '',
+  }
+
+  handleDemo = () => {
+    const { userLogin } = this.props;
+    userLogin(demoCredentials);
   }
 
   handleChange = (e) => {
