@@ -112,7 +112,7 @@ class EditProfile extends React.Component {
       });
     } else {
       this.setState({ isPending: true });
-      await validateUpdate(this.state);
+      await validateUpdate(formData);
       const { showUpdateError } = this.props; // eslint-disable-line no-shadow
       if (!showUpdateError) {
         Swal({
