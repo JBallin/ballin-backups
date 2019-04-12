@@ -191,7 +191,8 @@ class EditProfile extends React.Component {
       ),
       allowOutsideClick: () => !Swal.isLoading(),
     }).then(({ dismiss }) => {
-      if (!dismiss) {
+      const { showDeleteError } = this.props; // eslint-disable-line no-shadow
+      if (!dismiss && !showDeleteError) {
         Swal.fire({
           type: 'success',
           title: `Goodbye for now ${user.username}. May your config always be sweet and your bugs squashed.`,
