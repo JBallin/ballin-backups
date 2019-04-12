@@ -27,6 +27,7 @@ const initialState = {
     password: '',
     verifyPassword: '',
   },
+  isPending: false,
 };
 const invalidCurrPwdErr = 'Invalid current password';
 
@@ -110,6 +111,7 @@ class EditProfile extends React.Component {
         title: 'Please fill in the fields you would like to update.',
       });
     } else {
+      this.setState({ isPending: true });
       await validateUpdate(this.state);
       const { showUpdateError } = this.props; // eslint-disable-line no-shadow
       if (!showUpdateError) {
@@ -154,6 +156,7 @@ class EditProfile extends React.Component {
   };
 
   confirmDelete = async () => {
+    this.setState({ isPending: true });
     const {
       user, userDelete, clearEditErrors, showUpdateError, showDeleteError,
     } = this.props;
@@ -186,6 +189,8 @@ class EditProfile extends React.Component {
       Swal({
         type: 'success',
         title: `Goodbye for now ${user.username}. May your config always be sweet and your bugs squashed.`,
+      }).then(() => {
+        this.setState(initialState);
       });
     });
   };
@@ -201,6 +206,7 @@ class EditProfile extends React.Component {
       formData: {
         gistId, email, username, password, verifyPassword,
       },
+      isPending,
     } = this.state;
     const {
       isUpdateLoading, isDeleteLoading, showUpdateError, showDeleteError, updateErrorMessage,
