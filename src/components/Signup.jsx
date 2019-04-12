@@ -208,7 +208,7 @@ class Signup extends Component {
       </Row>
     );
     const alertSuccess = () => {
-      Swal({
+      Swal.fire({
         type: 'success',
         title: `Welcome ${username}!`,
         confirmButtonText: 'Login',

@@ -42,7 +42,7 @@ class Login extends React.Component {
 
   alertSuccessAndRedirect = () => {
     const { username } = this.props;
-    Swal({
+    Swal.fire({
       type: 'success',
       title: `Greetings ${username}!`,
     });
