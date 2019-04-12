@@ -138,7 +138,7 @@ class EditProfile extends React.Component {
         }).then(() => {
           Swal({
             type: 'success',
-            title: `You've successfully updated your profile ${username}!`,
+            title: `You've successfully updated your profile ${username || user.username}!`,
           })
             .then(() => {
               resetUpdateForm();
