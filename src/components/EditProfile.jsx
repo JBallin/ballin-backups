@@ -134,7 +134,7 @@ class EditProfile extends React.Component {
             userUpdate(user.id, { currentPassword, ...formattedUpdateReq })
               .then(() => {
                 const { updateErrorMessage } = this.props;
-                if (updateErrorMessage === invalidCurrPwdErr) {
+                if (updateErrorMessage) {
                   Swal.showValidationMessage(updateErrorMessage);
                 }
               })
