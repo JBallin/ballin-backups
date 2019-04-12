@@ -51,19 +51,19 @@ export const userUpdate = (userId, updateRequest) => async (dispatch) => {
       payload: userUpdates,
     });
   } catch (err) {
+    const errorMessage = err.message || err;
+    dispatch({
+      type: USER_UPDATE_FAILED,
+      payload: errorMessage,
+    });
     if (err instanceof TypeError) {
       dispatch({
         type: API_FETCH_FAILED,
       });
     } else {
-      const errorMessage = err.message || err;
       if (errorMessage.includes('gist')) {
         dispatch({ type: UPDATE_INVALID_GIST_ID });
       }
-      dispatch({
-        type: USER_UPDATE_FAILED,
-        payload: errorMessage,
-      });
     }
   }
 };
