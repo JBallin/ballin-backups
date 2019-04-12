@@ -110,7 +110,7 @@ class Login extends React.Component {
         { showLoginError && errorAlert }
         { loginButton }
         { signupLink }
-        {demoButton}
+        { demoButton }
       </Form>
     );
     const colStyle = ({
