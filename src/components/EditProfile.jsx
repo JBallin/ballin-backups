@@ -141,8 +141,8 @@ class EditProfile extends React.Component {
           ),
           allowOutsideClick: () => !Swal.isLoading(),
         }).then(({ dismiss }) => {
-          const { updateErrorMessage } = this.props;
-          if (!dismiss && !updateErrorMessage) {
+          const { showUpdateError } = this.props; // eslint-disable-line no-shadow
+          if (!dismiss && !showUpdateError) {
             Swal.fire({
               type: 'success',
               title: `You've successfully updated your profile ${username || user.username}!`,
@@ -191,7 +191,8 @@ class EditProfile extends React.Component {
       ),
       allowOutsideClick: () => !Swal.isLoading(),
     }).then(({ dismiss }) => {
-      if (!dismiss) {
+      const { showDeleteError } = this.props; // eslint-disable-line no-shadow
+      if (!dismiss && !showDeleteError) {
         Swal.fire({
           type: 'success',
           title: `Goodbye for now ${user.username}. May your config always be sweet and your bugs squashed.`,
