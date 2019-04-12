@@ -90,8 +90,10 @@ class EditProfile extends React.Component {
 
   confirmUpdate = async () => {
     const {
-      validateUpdate, userUpdate, user, clearEditErrors, showDeleteError, showUpdateError,
+      validateUpdate, userUpdate, user, clearEditErrors, showDeleteError,
+      showUpdateError, resetUpdateForm, fetchUser,
     } = this.props;
+    const { username } = this.state;
     const updateRequest = {};
     Object.entries(this.state).forEach(([key, value]) => {
       if (value.length) updateRequest[key] = value;
@@ -133,6 +135,16 @@ class EditProfile extends React.Component {
               })
           ),
           allowOutsideClick: () => !Swal.isLoading(),
+        }).then(() => {
+          Swal({
+            type: 'success',
+            title: `You've successfully updated your profile ${username}!`,
+          })
+            .then(() => {
+              resetUpdateForm();
+              fetchUser(user.id);
+              this.setState({ ...initialState });
+            });
         });
       }
     }
@@ -167,6 +179,11 @@ class EditProfile extends React.Component {
           })
       ),
       allowOutsideClick: () => !Swal.isLoading(),
+    }).then(() => {
+      Swal({
+        type: 'success',
+        title: `Goodbye for now ${user.username}. May your config always be sweet and your bugs squashed.`,
+      });
     });
   };
 
@@ -182,8 +199,7 @@ class EditProfile extends React.Component {
     } = this.state;
     const {
       isUpdateLoading, isDeleteLoading, showUpdateError, showDeleteError, updateErrorMessage,
-      deleteErrorMessage, invalidEmail, invalidGist, user, isUserDeleted, userUpdates,
-      resetUpdateForm, fetchUser,
+      deleteErrorMessage, invalidEmail, invalidGist, user, isUserDeleted,
     } = this.props;
     const colStyle = ({
       border: '1px solid #c9c5c2',
@@ -329,37 +345,12 @@ class EditProfile extends React.Component {
         </Col>
       </Row>
     );
-    const updateSuccess = () => {
-      Swal({
-        type: 'success',
-        title: `You've successfully updated your profile ${username}!`,
-      })
-        .then(() => {
-          resetUpdateForm();
-          fetchUser(user.id);
-          this.setState({ ...initialState });
-        });
-      return null;
-    };
-    const deleteSuccess = () => {
-      Swal({
-        type: 'success',
-        title: `Goodbye for now ${user.username}. May your config always be sweet and your bugs squashed.`,
-      });
-      return <Redirect push to="/logout" />;
-    };
 
-    /* eslint-disable no-nested-ternary, indent */
     return (
       <Container className="main-wrapper">
-        {
-          Object.keys(userUpdates).length ? updateSuccess()
-          : isUserDeleted ? deleteSuccess()
-          : styledForm
-        }
+        { isUserDeleted ? <Redirect push to="/logout" /> : styledForm }
       </Container>
     );
-    /* eslint-enable no-nested-ternary, indent */
   }
 }
 
