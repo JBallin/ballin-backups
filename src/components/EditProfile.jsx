@@ -20,11 +20,14 @@ import * as deleteActions from '../redux/actions/userDelete.actions';
 import * as authActions from '../redux/actions/auth.actions';
 
 const initialState = {
-  gistId: '',
-  email: '',
-  username: '',
-  password: '',
-  verifyPassword: '',
+  formData: {
+    gistId: '',
+    email: '',
+    username: '',
+    password: '',
+    verifyPassword: '',
+  },
+  isPending: false,
 };
 const invalidCurrPwdErr = 'Invalid current password';
 
@@ -63,9 +66,10 @@ class EditProfile extends React.Component {
     fetchUser: PropTypes.func.isRequired,
   }
 
-  state = { ...initialState }
+  state = initialState
 
   handleChange = async (e) => {
+    const { formData } = this.state;
     const {
       resetInvalidGist, showUpdateError, validateUpdate,
     } = this.props;
@@ -73,9 +77,9 @@ class EditProfile extends React.Component {
     let { value } = e.target;
     const isPassword = name.toLowerCase().includes('password');
     if (!isPassword) value = value.toLowerCase();
-    await this.setState({ [name]: value });
+    await this.setState({ formData: { ...formData, [name]: value } });
     if (showUpdateError) {
-      validateUpdate(this.state);
+      validateUpdate(formData);
       resetInvalidGist();
     }
   }
@@ -93,9 +97,9 @@ class EditProfile extends React.Component {
       validateUpdate, userUpdate, user, clearEditErrors, showDeleteError,
       showUpdateError, resetUpdateForm, fetchUser,
     } = this.props;
-    const { username } = this.state;
+    const { formData: { username }, formData } = this.state;
     const updateRequest = {};
-    Object.entries(this.state).forEach(([key, value]) => {
+    Object.entries(formData).forEach(([key, value]) => {
       if (value.length) updateRequest[key] = value;
     });
     const formattedUpdateReq = this.formatUser(updateRequest);
@@ -107,6 +111,7 @@ class EditProfile extends React.Component {
         title: 'Please fill in the fields you would like to update.',
       });
     } else {
+      this.setState({ isPending: true });
       await validateUpdate(this.state);
       const { showUpdateError } = this.props; // eslint-disable-line no-shadow
       if (!showUpdateError) {
@@ -143,7 +148,7 @@ class EditProfile extends React.Component {
             .then(() => {
               resetUpdateForm();
               fetchUser(user.id);
-              this.setState({ ...initialState });
+              this.setState(initialState);
             });
         });
       }
@@ -151,6 +156,7 @@ class EditProfile extends React.Component {
   };
 
   confirmDelete = async () => {
+    this.setState({ isPending: true });
     const {
       user, userDelete, clearEditErrors, showUpdateError, showDeleteError,
     } = this.props;
@@ -183,6 +189,8 @@ class EditProfile extends React.Component {
       Swal({
         type: 'success',
         title: `Goodbye for now ${user.username}. May your config always be sweet and your bugs squashed.`,
+      }).then(() => {
+        this.setState(initialState);
       });
     });
   };
@@ -195,7 +203,10 @@ class EditProfile extends React.Component {
   render() {
     document.title = 'Edit Profile | My Sweet Config';
     const {
-      gistId, email, username, password, verifyPassword,
+      formData: {
+        gistId, email, username, password, verifyPassword,
+      },
+      isPending,
     } = this.state;
     const {
       isUpdateLoading, isDeleteLoading, showUpdateError, showDeleteError, updateErrorMessage,
@@ -345,10 +356,15 @@ class EditProfile extends React.Component {
         </Col>
       </Row>
     );
+    const renderView = () => {
+      if (isPending) return null;
+      if (isUserDeleted) return <Redirect push to="/logout" />;
+      return styledForm;
+    };
 
     return (
       <Container className="main-wrapper">
-        { isUserDeleted ? <Redirect push to="/logout" /> : styledForm }
+        { renderView() }
       </Container>
     );
   }
