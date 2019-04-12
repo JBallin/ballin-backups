@@ -88,6 +88,11 @@ class Login extends React.Component {
       </Button>
     );
     const signupLink = <Link to="/signup">Not a member?</Link>;
+    const demoButton = (
+      <Button color="primary" className="float-right" disabled={isLoading} onClick={this.handleDemo}>
+        Demo
+      </Button>
+    );
     const loginForm = (
       <Form onSubmit={this.handleSubmit}>
         { emailField }
@@ -95,6 +100,7 @@ class Login extends React.Component {
         { showLoginError && errorAlert }
         { loginButton }
         { signupLink }
+        {demoButton}
       </Form>
     );
     const colStyle = ({
