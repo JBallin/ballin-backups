@@ -356,10 +356,15 @@ class EditProfile extends React.Component {
         </Col>
       </Row>
     );
+    const renderView = () => {
+      if (isPending) return null;
+      if (isUserDeleted) return <Redirect push to="/logout" />;
+      return styledForm;
+    };
 
     return (
       <Container className="main-wrapper">
-        { isUserDeleted ? <Redirect push to="/logout" /> : styledForm }
+        { renderView() }
       </Container>
     );
   }
