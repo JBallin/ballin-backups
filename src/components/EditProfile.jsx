@@ -134,14 +134,15 @@ class EditProfile extends React.Component {
             userUpdate(user.id, { currentPassword, ...formattedUpdateReq })
               .then(() => {
                 const { updateErrorMessage } = this.props;
-                if (updateErrorMessage) {
+                if (updateErrorMessage === invalidCurrPwdErr) {
                   Swal.showValidationMessage(updateErrorMessage);
                 }
               })
           ),
           allowOutsideClick: () => !Swal.isLoading(),
         }).then(({ dismiss }) => {
-          if (!dismiss) {
+          const { updateErrorMessage } = this.props;
+          if (!dismiss && !updateErrorMessage) {
             Swal.fire({
               type: 'success',
               title: `You've successfully updated your profile ${username || user.username}!`,
