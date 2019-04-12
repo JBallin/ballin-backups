@@ -66,7 +66,7 @@ class EditProfile extends React.Component {
     fetchUser: PropTypes.func.isRequired,
   }
 
-  state = initialState
+  state = { ...initialState }
 
   handleChange = async (e) => {
     const { formData } = this.state;
