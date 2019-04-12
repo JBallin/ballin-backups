@@ -106,7 +106,7 @@ class EditProfile extends React.Component {
     const updatedFields = Object.keys(formattedUpdateReq);
     if (!updatedFields.length) {
       if (showDeleteError || showUpdateError) clearEditErrors();
-      Swal({
+      Swal.fire({
         type: 'info',
         title: 'Please fill in the fields you would like to update.',
       });
@@ -115,7 +115,7 @@ class EditProfile extends React.Component {
       const { showUpdateError } = this.props; // eslint-disable-line no-shadow
       if (!showUpdateError) {
         this.setState({ isPending: true });
-        Swal({
+        Swal.fire({
           type: 'warning',
           title: 'Are you sure you want to update the following?',
           text: updatedFields.join(', '),
@@ -142,7 +142,7 @@ class EditProfile extends React.Component {
           allowOutsideClick: () => !Swal.isLoading(),
         }).then(({ dismiss }) => {
           if (!dismiss) {
-            Swal({
+            Swal.fire({
               type: 'success',
               title: `You've successfully updated your profile ${username || user.username}!`,
             })
@@ -165,7 +165,7 @@ class EditProfile extends React.Component {
       user, userDelete, clearEditErrors, showUpdateError, showDeleteError,
     } = this.props;
     if (showUpdateError || showDeleteError) clearEditErrors();
-    Swal({
+    Swal.fire({
       type: 'warning',
       title: 'Are you sure you want to delete your profile?',
       input: 'password',
@@ -191,7 +191,7 @@ class EditProfile extends React.Component {
       allowOutsideClick: () => !Swal.isLoading(),
     }).then(({ dismiss }) => {
       if (!dismiss) {
-        Swal({
+        Swal.fire({
           type: 'success',
           title: `Goodbye for now ${user.username}. May your config always be sweet and your bugs squashed.`,
         }).then(() => {
