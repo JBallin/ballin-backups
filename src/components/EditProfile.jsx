@@ -20,11 +20,13 @@ import * as deleteActions from '../redux/actions/userDelete.actions';
 import * as authActions from '../redux/actions/auth.actions';
 
 const initialState = {
-  gistId: '',
-  email: '',
-  username: '',
-  password: '',
-  verifyPassword: '',
+  formData: {
+    gistId: '',
+    email: '',
+    username: '',
+    password: '',
+    verifyPassword: '',
+  },
 };
 const invalidCurrPwdErr = 'Invalid current password';
 
@@ -66,6 +68,7 @@ class EditProfile extends React.Component {
   state = { ...initialState }
 
   handleChange = async (e) => {
+    const { formData } = this.state;
     const {
       resetInvalidGist, showUpdateError, validateUpdate,
     } = this.props;
@@ -73,9 +76,9 @@ class EditProfile extends React.Component {
     let { value } = e.target;
     const isPassword = name.toLowerCase().includes('password');
     if (!isPassword) value = value.toLowerCase();
-    await this.setState({ [name]: value });
+    await this.setState({ formData: { ...formData, [name]: value } });
     if (showUpdateError) {
-      validateUpdate(this.state);
+      validateUpdate(formData);
       resetInvalidGist();
     }
   }
@@ -93,9 +96,9 @@ class EditProfile extends React.Component {
       validateUpdate, userUpdate, user, clearEditErrors, showDeleteError,
       showUpdateError, resetUpdateForm, fetchUser,
     } = this.props;
-    const { username } = this.state;
+    const { formData: { username }, formData } = this.state;
     const updateRequest = {};
-    Object.entries(this.state).forEach(([key, value]) => {
+    Object.entries(formData).forEach(([key, value]) => {
       if (value.length) updateRequest[key] = value;
     });
     const formattedUpdateReq = this.formatUser(updateRequest);
@@ -195,7 +198,9 @@ class EditProfile extends React.Component {
   render() {
     document.title = 'Edit Profile | My Sweet Config';
     const {
-      gistId, email, username, password, verifyPassword,
+      formData: {
+        gistId, email, username, password, verifyPassword,
+      },
     } = this.state;
     const {
       isUpdateLoading, isDeleteLoading, showUpdateError, showDeleteError, updateErrorMessage,
