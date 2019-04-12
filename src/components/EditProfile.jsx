@@ -111,10 +111,10 @@ class EditProfile extends React.Component {
         title: 'Please fill in the fields you would like to update.',
       });
     } else {
-      this.setState({ isPending: true });
       await validateUpdate(formData);
       const { showUpdateError } = this.props; // eslint-disable-line no-shadow
       if (!showUpdateError) {
+        this.setState({ isPending: true });
         Swal({
           type: 'warning',
           title: 'Are you sure you want to update the following?',
