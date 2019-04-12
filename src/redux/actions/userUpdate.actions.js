@@ -57,13 +57,9 @@ export const userUpdate = (userId, updateRequest) => async (dispatch) => {
       payload: errorMessage,
     });
     if (err instanceof TypeError) {
-      dispatch({
-        type: API_FETCH_FAILED,
-      });
-    } else {
-      if (errorMessage.includes('gist')) {
-        dispatch({ type: UPDATE_INVALID_GIST_ID });
-      }
+      dispatch({ type: API_FETCH_FAILED });
+    } else if (errorMessage.includes('gist')) {
+      dispatch({ type: UPDATE_INVALID_GIST_ID });
     }
   }
 };
