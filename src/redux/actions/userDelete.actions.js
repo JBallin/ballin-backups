@@ -22,15 +22,14 @@ export const userDelete = (userId, currentPassword) => async (dispatch) => {
     }
     dispatch({ type: USER_DELETE_SUCCESS });
   } catch (e) {
+    const errorMessage = e.message || e;
+    dispatch({
+      type: USER_DELETE_FAILED,
+      payload: errorMessage,
+    });
     if (e instanceof TypeError) {
       dispatch({
         type: API_FETCH_FAILED,
-      });
-    } else {
-      const errorMessage = e.message || e;
-      dispatch({
-        type: USER_DELETE_FAILED,
-        payload: errorMessage,
       });
     }
   }
