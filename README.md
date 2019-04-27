@@ -1,4 +1,4 @@
-# My Sweet Config
+# My Sweet Config [![Build Status](https://travis-ci.com/JBallin/sweet-config.svg?branch=master)](https://travis-ci.com/JBallin/sweet-config)
 
 *Visualize your dev environment*
 
